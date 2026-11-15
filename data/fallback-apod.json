@@ -1,0 +1,27 @@
+{
+  "updatedAt": "2026-11-14T00:00:00Z",
+  "source": "NASA Astronomy Picture of the Day (APOD)",
+  "sourceUrl": "https://science.nasa.gov/apod/archive/",
+  "items": [
+    {
+      "date": "2026-11-14",
+      "title": "Apollo 12 and Surveyor 3",
+      "explanation": "Astronaut Pete Conrad inspects the robotic Surveyor 3 lander inside an Ocean of Storms crater on the Moon, with the Lunar Module Intrepid visible in the distance.",
+      "media_type": "image",
+      "url": "https://science.nasa.gov/image-article/apod-2026-november-14-apollo-12-and-surveyor-3/",
+      "hdurl": "https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/2026/november/KF-ApAn48-7133-4.jpg?w=2181&h=2200&fit=clip&crop=faces%2Cfocalpoint",
+      "credit": "NASA / Apollo 12 / Alan Bean / Kevin Frank",
+      "copyright": "NASA / Kevin Frank"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "NGC 206 and the Star Clouds of Andromeda",
+      "explanation": "A massive stellar nursery packed with bright young blue stars located within our neighboring spiral galaxy, Andromeda (M31).",
+      "media_type": "image",
+      "url": "https://science.nasa.gov/image-article/apod-2026-november-13-ngc-206-and-the-star-clouds-of-andromeda/",
+      "hdurl": "https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/2026/november/NGC206_Andromeda.jpg",
+      "credit": "NASA, ESA, and Hubble Heritage Team",
+      "copyright": "Public Domain / NASA"
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Astro World - Real NASA Science Documentation and Curriculum Guide">
+  <title>Real NASA Science Guide | عالم آسترو</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="mission-header">
+    <div class="header-container">
+      <a href="./index.html#/" class="logo-brand">
+        <span style="font-size: 1.8rem;">🚀</span>
+        <div>
+          <div class="logo-title">Astro World • Real NASA Science</div>
+          <div class="logo-subtitle">Scientific Integrity & Educational Documentation</div>
+        </div>
+      </a>
+      <div>
+        <a href="./index.html#/dashboard" class="btn btn-primary">
+          🎮 Back to Mission Ops
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content" style="max-width: 960px;">
+    <!-- Intro Hero -->
+    <div class="event-container" style="margin-top: 1rem;">
+      <h1 style="color: var(--primary-cyan); font-size: 2rem; margin-bottom: 0.75rem;">
+        🔬 Real NASA Science in Astro World
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
+        Astro World was built for students (ages 7–12), educators, and parents to teach the real-world physics, biological challenges, and strict resource constraints of deep-space survival. Every metric and gameplay event is anchored directly in authentic NASA open datasets.
+      </p>
+    </div>
+
+    <!-- NASA Datasets Table -->
+    <div class="event-container">
+      <h2 style="color: var(--solar-amber); font-size: 1.4rem; margin-bottom: 1rem;">
+        🛰️ NASA Datasets Used & Gameplay Mapping
+      </h2>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: inherit; font-size: 0.9rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border-highlight); color: var(--primary-cyan);">
+              <th style="padding: 0.75rem;">Dataset & Service</th>
+              <th style="padding: 0.75rem;">What It Is</th>
+              <th style="padding: 0.75rem;">How Astro World Uses It</th>
+              <th style="padding: 0.75rem;">Fallback & Tiering</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border-subtle);">
+              <td style="padding: 0.75rem; font-weight: 700;">
+                <a href="https://ccmc.gsfc.nasa.gov/DONKI/" target="_blank" style="color: var(--primary-cyan);">NASA DONKI (CCMC)</a>
+              </td>
+              <td style="padding: 0.75rem;">Space Weather Database Of Notifications, Knowledge, Information.</td>
+              <td style="padding: 0.75rem;">Drives Game 1 Solar Storm events, shield drainage multiplier, and live dashboard ticker.</td>
+              <td style="padding: 0.75rem;">Live API → Daily Snapshot → Fallback Archive (`fallback-space-weather.json`).</td>
+            </tr>
+
+            <tr style="border-bottom: 1px solid var(--border-subtle);">
+              <td style="padding: 0.75rem; font-weight: 700;">
+                <a href="https://cneos.jpl.nasa.gov/" target="_blank" style="color: var(--primary-cyan);">NASA JPL NeoWs</a>
+              </td>
+              <td style="padding: 0.75rem;">Near Earth Object Web Service tracking asteroids approaching Earth.</td>
+              <td style="padding: 0.75rem;">Powers Ask Astro chatbot with real asteroid diameters, speeds, and lunar distance comparisons.</td>
+              <td style="padding: 0.75rem;">Live API (with custom key support) → Fallback Archive (`fallback-neows.json`).</td>
+            </tr>
+
+            <tr style="border-bottom: 1px solid var(--border-subtle);">
+              <td style="padding: 0.75rem; font-weight: 700;">
+                <a href="https://science.nasa.gov/apod/archive/" target="_blank" style="color: var(--primary-cyan);">NASA APOD (Science.nasa.gov)</a>
+              </td>
+              <td style="padding: 0.75rem;">Astronomy Picture of the Day curated by professional astrophysicists.</td>
+              <td style="padding: 0.75rem;">Integrates real high-resolution space photographs and verified astronomer explanations into Mission Comms.</td>
+              <td style="padding: 0.75rem;">REST API → Fallback Archive (`fallback-apod.json`).</td>
+            </tr>
+
+            <tr style="border-bottom: 1px solid var(--border-subtle);">
+              <td style="padding: 0.75rem; font-weight: 700;">
+                <a href="https://osdr.nasa.gov/" target="_blank" style="color: var(--primary-cyan);">NASA OSDR</a>
+              </td>
+              <td style="padding: 0.75rem;">Open Science Data Repository for space biology, DNA damage, and astronaut health.</td>
+              <td style="padding: 0.75rem;">Supplies 10 kid-friendly health findings (bone density, muscle atrophy, space crops) with verified study IDs.</td>
+              <td style="padding: 0.75rem;">Verified repository records (`health-facts.json`).</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 0.75rem; font-weight: 700;">
+                <a href="https://images.nasa.gov/" target="_blank" style="color: var(--primary-cyan);">NASA Image & Video Library</a>
+              </td>
+              <td style="padding: 0.75rem;">Official NASA historical and mission imagery archive.</td>
+              <td style="padding: 0.75rem;">Authentic mission backdrops, Apollo lunar surface images, and rover photography.</td>
+              <td style="padding: 0.75rem;">Direct image assets with credit and public domain attribution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- How the Game Math Works -->
+    <div class="event-container">
+      <h2 style="color: var(--solar-amber); font-size: 1.4rem; margin-bottom: 1rem;">
+        📐 How the Game Math Works (Traceable Mechanics)
+      </h2>
+      <ul style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-main);">
+        <li>
+          <strong>Space Weather to Shield Multiplier:</strong> In Game 1, an active X-class flare or solar proton event (SEP) doubles the required shield power ($2.0\times$ multiplier). An M-class flare raises it to $1.4\times$. If the outpost cannot supply the required power, shield integrity drops by 10% per unsupplied unit, eventually stressing crew health.
+        </li>
+        <li>
+          <strong>Radiation Attenuation Formula:</strong> In Game 2, incoming solar radiation dose ($D_{in}$) is reduced by layered shield materials. Each layer acts as an exponential attenuator:
+          $D_{absorbed} = D_{in} \times \prod (Factor_i)$.
+          Water walls attenuate protons strongly ($0.40$), Regolith absorbs moderately ($0.50$), and Active magnetic shielding attenuates at ($0.65$). No layout can achieve $0$ mSv because space radiation always has a background penetrating component (Galactic Cosmic Rays).
+        </li>
+        <li>
+          <strong>Life Support Power Priority:</strong> Keeping the habitat's life support above 3 daily power units maintains positive oxygen balance. Falling below 3 causes an oxygen deficit of $-8\%$ per unpowered unit per turn.
+        </li>
+      </ul>
+    </div>
+
+    <!-- What We Simplified -->
+    <div class="event-container">
+      <h2 style="color: var(--primary-cyan); font-size: 1.4rem; margin-bottom: 1rem;">
+        🔍 What We Simplified (Honest Transparency)
+      </h2>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; color: var(--text-muted); font-size: 0.95rem;">
+        <p>  
+          • <strong>Game-Scaled Lunar Night:</strong> A true lunar night lasts 14 Earth days. In our 10-turn mission, the lunar night lasts 3 turns so students can experience its challenge during a standard class period.
+        </p>
+        <p>
+          • <strong>Flare Class vs. Radiation Danger:</strong> In real space weather, flare X-ray classification does not always correlate 1:1 with particle radiation. Solar Energetic Particles (SEP) and CME shock geometry are the primary biological hazard. We simplify this into an intuitive threat level for young students while explicitly teaching the difference on screen.
+        </p>
+        <p>
+          • <strong>Active Magnetic Shielding:</strong> We clearly label magnetic field generators as an experimental concept currently being researched by NASA and academic scientists. It is not yet deployed on human spacecraft due to extreme mass and superconductor power constraints.
+        </p>
+        <p>
+          • <strong>Suit Procedures:</strong> Real EMU and xEMU contingency checklists involve hundreds of steps and ground control verification. Our suit triage game simplifies these into 3 key ordered actions to teach causal logic without overwhelming younger players.
+        </p>
+      </div>
+    </div>
+
+    <!-- Teacher Corner -->
+    <div class="event-container">
+      <h2 style="color: var(--success-green); font-size: 1.4rem; margin-bottom: 1rem;">
+        🍎 Teacher & Parent Corner
+      </h2>
+      <p style="color: var(--text-main); margin-bottom: 1rem;">
+        Astro World is designed for direct classroom use, science clubs, and homeschool curriculum. Use these 3 guided inquiry questions with your students:
+      </p>
+
+      <ol style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-main); margin-bottom: 1.5rem;">
+        <li>
+          <strong>The Water Paradox:</strong> Why is water both our most precious life-support drink AND one of the best shields against solar protons? How does hydrogen stop radiation?
+        </li>
+        <li>
+          <strong>Autonomous Astronauts:</strong> If a radio message takes 20 minutes to reach Mars from Earth, why must astronauts be trained to fix life support emergencies without waiting for Mission Control?
+        </li>
+        <li>
+          <strong>Energy Storage on the Moon:</strong> How would you survive 14 straight days of darkness and freezing cold on the Moon with zero sunlight for solar panels?
+        </li>
+      </ol>
+
+      <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--success-green); border-radius: var(--radius-md); padding: 1rem;">
+        <strong style="color: var(--success-green);">💡 Teacher Tip: Seeded Classroom Missions</strong><br>
+        Every game generates a 6-digit <strong>Mission Seed</strong> (displayed at the top of Game 1). You can give the exact same seed number to every student in your class so they all face the exact same sequence of solar storms and equipment challenges, enabling fair comparative discussion!
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>Astro World • Dedicated to inspiring the Artemis Generation of explorers.</p>
+      <p style="font-size: 0.8rem; color: var(--solar-amber);">
+        Not affiliated with or endorsed by NASA. All scientific data attributed to NASA open access services.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+ 
+

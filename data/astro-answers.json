@@ -1,0 +1,64 @@
+{
+  "answers": [
+    {
+      "intent": "solar_weather",
+      "text_en": "I checked NASA DONKI! Solar flares shoot intense X-rays, while Coronal Mass Ejections (CMEs) fling billions of tons of charged gas toward planets. When high-energy solar protons hit an outpost, our habitat shield must absorb them to keep astronauts safe!",
+      "text_ar": "فحصت بيانات مرصد ناسا (DONKI)! تطلق التوهجات الشمسية أشعة سينية فورية، بينما تقذف الانبعاثات الكتلية الإكليلية مليارات الأطنان من الغاز المشحون نحو الكواكب. عندما تصل البروتونات الشمسية إلى قاعدتنا، يجب أن يمتصها الدرع لحماية طاقمنا!",
+      "sourceUrl": "https://ccmc.gsfc.nasa.gov/DONKI/"
+    },
+    {
+      "intent": "asteroids",
+      "text_en": "NASA's Center for Near-Earth Object Studies (CNEOS) tracks space rocks! Most fly by millions of kilometers away — usually many times farther than our Moon. Astronomers monitor them 24/7 so we always have early warnings.",
+      "text_ar": "يتتبع مركز دراسات الأجرام القريبة من الأرض (CNEOS) في ناسا صخور الفضاء! تمر معظم الكويكبات بسلام على مسافة ملايين الكيلومترات (أبعد بعدة مرات من المسافة بين الأرض والقمر). يراقبها الفلكيون على مدار الساعة!",
+      "sourceUrl": "https://cneos.jpl.nasa.gov/"
+    },
+    {
+      "intent": "apod",
+      "text_en": "NASA features an Astronomy Picture of the Day (APOD) curated by professional astronomers! Every photograph comes with a scientific description revealing new secrets about our universe.",
+      "text_ar": "تنشر وكالة ناسا يومياً 'صورة اليوم الفلكية' (APOD) بإشراف علماء فلك محترفين! كل صورة ترفق بشرح علمي يكشف أسراراً مذهلة عن أرجاء كوننا الشاسع.",
+      "sourceUrl": "https://science.nasa.gov/apod/archive/"
+    },
+    {
+      "intent": "eva_oxygen",
+      "text_en": "During a spacewalk (EVA), astronauts work hard against the stiff, pressurized suit! Physical exertion makes the body burn oxygen much faster and release more heat and CO2, meaning your life-support backpack drains more quickly.",
+      "text_ar": "أثناء السير في الفضاء (EVA)، يبذل رائد الفضاء جهداً عضلياً كبيراً ضد بدلة الفضاء المضغوطة! هذا الجهد يرفع معدل حرق الأكسجين في الجسم ويفرز حرارة وثاني أكسيد كربون إضافي، مما يستنزف حقيبة دعم الحياة أسرع.",
+      "sourceUrl": "https://www.nasa.gov/suitup/"
+    },
+    {
+      "intent": "radiation",
+      "text_en": "Space radiation consists of invisible energetic protons and cosmic rays that pierce through ordinary metal. It doesn't glow green like in cartoons — it damages cells like a deep sunburn inside your body. That's why water walls and regolith bags make great shields!",
+      "text_ar": "الإشعاع الفضائي هو جسيمات بروتونية وأشعة كونية غير مرئية تخترق المعادن العادية. هو لا يتوهج بالأخضر كما في أفلام الكرتون، بل يتلف الخلايا مثل حروق شمس عميقة داخل الجسم! لذلك تعتبر جدران الماء وطبقات الثرى دروعاً ممتازة.",
+      "sourceUrl": "https://www.nasa.gov/hrp/radiation/"
+    },
+    {
+      "intent": "sol_mars",
+      "text_en": "A 'sol' is one Martian solar day! Because Mars rotates slightly slower than Earth, a sol lasts 24 hours, 39 minutes, and 35 seconds. Astronauts on Mars adjust their wristwatches to Martian time!",
+      "text_ar": "'الصول' (Sol) هو اليوم الشمسي على كوكب المريخ! ولأن المريخ يدور حول نفسه أبطأ قليلاً من الأرض، فإن الصول يستمر 24 ساعة و39 دقيقة و35 ثانية. يضبط رواد المريخ ساعاتهم على التوقيت المريخي!",
+      "sourceUrl": "https://mars.nasa.gov/all-about-mars/facts/"
+    },
+    {
+      "intent": "mars_delay",
+      "text_en": "Radio waves travel at the speed of light (300,000 km/s), but Mars is tens of millions of kilometers away! A radio message takes 3 to 22 minutes to reach Earth, and another 3 to 22 minutes to get an answer back. That's why Mars astronauts must think for themselves!",
+      "text_ar": "تسافر موجات الراديو بسرعة الضوء (300 ألف كم/ث)، لكن المريخ يبعد عشرات الملايين من الكيلومترات! تستغرق الرسالة من 3 إلى 22 دقيقة لتصل للأرض، ومثلها لعودة الرد. لذلك يتعلم رواد المريخ اتخاذ القرارات بأنفسهم في الحالات الطارئة!",
+      "sourceUrl": "https://mars.nasa.gov/mars2020/mission/communications/"
+    },
+    {
+      "intent": "lunar_night",
+      "text_en": "The Moon rotates very slowly compared to Earth! A single day of bright sunshine lasts 14 Earth days, followed by a freezing 14-day lunar night with temperatures dropping to -130°C and zero solar power. Saving battery power beforehand is essential!",
+      "text_ar": "يدور القمر ببطء شديد مقارنة بالأرض! يستمر النهار المشمس 14 يوماً أرضياً، يليه ليل قمري قارس يستمر 14 يوماً أرضياً أيضاً حيث تهبط الحرارة إلى -130 درجة مئوية وتنعدم الطاقة الشمسية. توفير طاقة البطارية مسبقاً أمر حيوي للنجاة!",
+      "sourceUrl": "https://www.nasa.gov/moon/"
+    },
+    {
+      "intent": "health",
+      "text_en": "In low gravity, your muscles and bones don't have to carry your weight, so they weaken quickly without exercise. NASA astronauts spend 2 hours every day lifting weights and cycling to keep their bodies strong!",
+      "text_ar": "في الجاذبية المنخفضة، لا تضطر عضلاتك وعظامك لحمل وزنك، فتضعف سريعاً إن لم تتمرن. يخصص رواد فضاء ناسا ساعتين يومياً لتمارين رفع الأثقال والدراجة الثابتة للبقاء بكامل قوتهم!",
+      "sourceUrl": "https://osdr.nasa.gov/"
+    },
+    {
+      "intent": "fallback",
+      "text_en": "BEEP BOOP! I don't have that answer in my handbook yet, but I'm learning! Try asking me about: 'Solar storms', 'Near-Earth asteroids', 'Why oxygen runs out in spacewalks', 'What is a Sol?', or 'How long is the lunar night?'.",
+      "text_ar": "بيب بوب! لم أتعلم إجابة هذا السؤال بعد في دليلي الفضائي! جرب سؤالي عن: 'العواصف الشمسية'، 'الكويكبات القريبة'، 'لماذا ينفد الأكسجين في السير الفضائي؟'، 'ما هو الصول المريخي؟'، أو 'كم يبلغ طول ليل القمر؟'.",
+      "sourceUrl": "https://science.nasa.gov/"
+    }
+  ]
+}

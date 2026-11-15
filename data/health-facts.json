@@ -1,0 +1,102 @@
+[
+  {
+    "id": "osdr-rad-01",
+    "studyId": "OSD-379",
+    "topic": "radiation",
+    "title_en": "Cosmic Rays and DNA Repair",
+    "title_ar": "الأشعة الكونية وإصلاح الحمض النووي",
+    "fact_en": "Deep space has high-energy particle radiation that can break tiny strands inside living cells. Astronaut bodies work overtime to repair this DNA damage!",
+    "fact_ar": "يحتوي الفضاء العميق على إشعاعات جسيمية عالية الطاقة يمكن أن تقطع الخيوط الدقيقة داخل الخلايا الحية. لذلك تبذل أجساد رواد الفضاء مجهوداً مضاعفاً لإصلاح هذا التلف!",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-379"
+  },
+  {
+    "id": "osdr-bone-02",
+    "studyId": "OSD-452",
+    "topic": "bone_density",
+    "title_en": "Bone Loss in Weightlessness",
+    "title_ar": "فقدان كثافة العظام في انعدام الوزن",
+    "fact_en": "Without gravity pushing down on them, astronaut bones lose about 1% of their density every month. That is why heavy resistance exercise is required daily!",
+    "fact_ar": "بدون جاذبية تضغط على الجسم، تفقد عظام رواد الفضاء قرابة 1% من كثافتها شهرياً. ولهذا السبب يمارس الرواد تمارين المقاومة الثقيلة يومياً!",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-452"
+  },
+  {
+    "id": "osdr-muscle-03",
+    "studyId": "OSD-120",
+    "topic": "muscle_atrophy",
+    "title_en": "Muscle Maintenance on Moon and Mars",
+    "title_ar": "الحفاظ على العضلات على القمر والمريخ",
+    "fact_en": "Muscles shrink quickly when they don't have to carry your full Earth weight. Astronauts eat extra protein and run on space treadmills with bungees.",
+    "fact_ar": "تضمر العضلات سريعاً عندما لا تضطر لحمل وزنك الأرضي الكامل. لذلك يتناول الرواد بروتيناً إضافياً ويركضون على أجهزة جري مزودة بأحزمة مطاطية.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-120"
+  },
+  {
+    "id": "osdr-plants-04",
+    "studyId": "OSD-211",
+    "topic": "space_crops",
+    "title_en": "Growing Salad in Space (Veggie)",
+    "title_ar": "زراعة الخضار في الفضاء (مشروع فيجي)",
+    "fact_en": "Plant roots look for gravity to know which way is down! In space, LED grow lights tell plants which way to grow leaves so astronauts get fresh vitamins.",
+    "fact_ar": "تبحث جذور النباتات عن الجاذبية لتعرف طريقها للأسفل! وفي الفضاء، ترشد إضاءة الـ LED النباتات لتوجيه أوراقها نحو الضوء لتوفر للرواد فيتامينات طازجة.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-211"
+  },
+  {
+    "id": "osdr-immune-05",
+    "studyId": "OSD-324",
+    "topic": "immune_system",
+    "title_en": "The Sleepy Immune System",
+    "title_ar": "جهاز المناعة ونوم الخلايا",
+    "fact_en": "Living inside a spacecraft can make some immune cells sluggish. Scientists test special probiotic foods to keep astronauts from catching bugs.",
+    "fact_ar": "العيش داخل مركبة الفضاء قد يجعل بعض خلايا المناعة بطيئة. يدرس علماء ناسا أغذية حيوية خاصة لتقوية دفاعات الرواد ضد الأمراض.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-324"
+  },
+  {
+    "id": "osdr-vision-06",
+    "studyId": "OSD-518",
+    "topic": "vision_sANS",
+    "title_en": "Spaceflight Eye Changes (SANS)",
+    "title_ar": "تغيرات النظر عند رواد الفضاء",
+    "fact_en": "Without gravity pulling fluids down toward your feet, extra fluid floats up into the head and slightly presses on the back of the eyes.",
+    "fact_ar": "في غياب الجاذبية التي تسحب السوائل للأسفل نحو القدمين، تصعد السوائل للرأس وتضغط برفق على مؤخرة العينين مؤقتاً.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-518"
+  },
+  {
+    "id": "osdr-sleep-07",
+    "studyId": "OSD-402",
+    "topic": "circadian_rhythm",
+    "title_en": "Sleeping with 16 Sunrises a Day",
+    "title_ar": "النوم مع 16 شروقاً للشمس كل يوم",
+    "fact_en": "Astronauts in low orbit see sunrise every 90 minutes! Sleep masks and timed cabin lighting help trick their bodies into a healthy 24-hour bedtime.",
+    "fact_ar": "يشهد رواد الفضاء في المدار المنخفض شروق الشمس كل 90 دقيقة! لذلك يستخدمون أقنعة عيون وإضاءة مقصورة مبرمجة لضبط نومهم كل 24 ساعة.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-402"
+  },
+  {
+    "id": "osdr-cardio-08",
+    "studyId": "OSD-287",
+    "topic": "cardiovascular",
+    "title_en": "The Heart Shapes Like a Sphere",
+    "title_ar": "شكل القلب في الفضاء",
+    "fact_en": "Because pumping blood is much easier in zero-G, the human heart doesn't have to work as hard and actually becomes slightly rounder during long flights!",
+    "fact_ar": "لأن ضخ الدم أسهل بكثير في انعدام الوزن، يقل الجهد على القلب ويصبح شكله دائرياً قليلاً خلال الرحلات الطويلة!",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-287"
+  },
+  {
+    "id": "osdr-microbiome-09",
+    "studyId": "OSD-614",
+    "topic": "microbiome",
+    "title_en": "Friendly Gut Microbes in Space",
+    "title_ar": "البكتيريا النافعة في أمعاء الرواد",
+    "fact_en": "NASA's Twin Study proved that the friendly bacteria living in your tummy change when you eat space food, but return to normal back on Earth.",
+    "fact_ar": "أثبتت دراسة التوائم الشهيرة في ناسا أن البكتيريا النافعة في الأمعاء تتغير مع طعام الفضاء لكنها تعود لطبيعتها بمجرد العودة للأرض.",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-614"
+  },
+  {
+    "id": "osdr-water-10",
+    "studyId": "OSD-175",
+    "topic": "water_recycling",
+    "title_en": "Recycling 98% of Every Drop",
+    "title_ar": "إعادة تدوير 98% من كل قطرة ماء",
+    "fact_en": "On space stations and moon bases, every breath you exhale and every drop of moisture is cleaned and turned back into fresh, pure drinking water!",
+    "fact_ar": "في محطات الفضاء وقواعد القمر، يُعاد تنقية رطوبة الزفير وكل قطرة ماء بنسبة 98% لتتحول إلى ماء شرب فائق النقاء مجدداً!",
+    "url": "https://osdr.nasa.gov/bio/repo/data/study/OSD-175"
+  }
+]

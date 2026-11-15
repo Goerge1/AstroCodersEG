@@ -1,0 +1,52 @@
+{
+  "updatedAt": "2026-11-14T00:00:00Z",
+  "source": "NASA JPL / Center for Near Earth Object Studies (CNEOS) - NeoWs API",
+  "sourceUrl": "https://cneos.jpl.nasa.gov/",
+  "near_earth_objects": [
+    {
+      "id": "3542519",
+      "name": "(2010 PK9)",
+      "estimated_diameter_meters": { "min": 140, "max": 310 },
+      "is_potentially_hazardous": true,
+      "close_approach_data": [
+        {
+          "close_approach_date": "2026-11-12",
+          "relative_velocity_km_h": "42150",
+          "miss_distance_km": "3840000",
+          "lunar_distance_multiple": 10.0,
+          "friendly_comparison": "10 times farther than our Moon (10x lunar distance)"
+        }
+      ]
+    },
+    {
+      "id": "54415842",
+      "name": "2024 VZ2",
+      "estimated_diameter_meters": { "min": 18, "max": 41 },
+      "is_potentially_hazardous": false,
+      "close_approach_data": [
+        {
+          "close_approach_date": "2026-11-13",
+          "relative_velocity_km_h": "28300",
+          "miss_distance_km": "768000",
+          "lunar_distance_multiple": 2.0,
+          "friendly_comparison": "2 times farther than the Moon — safely zooming past!"
+        }
+      ]
+    },
+    {
+      "id": "3758838",
+      "name": "(2016 VB1)",
+      "estimated_diameter_meters": { "min": 52, "max": 115 },
+      "is_potentially_hazardous": false,
+      "close_approach_data": [
+        {
+          "close_approach_date": "2026-11-14",
+          "relative_velocity_km_h": "64800",
+          "miss_distance_km": "5760000",
+          "lunar_distance_multiple": 15.0,
+          "friendly_comparison": "15 times the distance to the Moon — completely harmless"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسترو وورلد | Astro World - NASA</title>
+  <link rel="icon" type="image/svg+xml" href="assets/nasa-logo.svg">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Supabase Client Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Three.js & OrbitControls for Photorealistic 3D Solar System Simulation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Canvas Confetti for Rocket Launch Effect -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <!-- Early Theme Initializer (Prevents Theme Flash on Refresh) -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('ASTRO_THEME');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Deep Space Realistic Universe Canvas -->
+  <canvas id="spaceCanvas"></canvas>
+
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="brand-section">
+        <div class="nasa-badge" title="NASA - National Aeronautics and Space Administration">
+          <img src="assets/nasa-logo.svg" alt="NASA Logo">
+        </div>
+        <div class="brand-text">
+          <h1 id="brandTitle">أسترو وورلد <span style="font-size: 0.9rem; color: var(--accent-cyan); font-weight: 600;">NASA</span></h1>
+          <p id="brandSubtitle">بوابة استكشاف الفضاء والمجرات</p>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Neumorphism Theme Toggle -->
+        <button type="button" class="nm-btn nm-icon-btn" id="themeToggleBtn" title="تغيير الثيم">
+          <i data-lucide="sun" id="themeIcon" style="width: 18px; height: 18px;"></i>
+        </button>
+
+        <!-- Audio Sound Effects Toggle -->
+        <button type="button" class="nm-btn nm-icon-btn" id="soundToggleBtn" title="المؤثرات الصوتية">
+          <i data-lucide="volume-2" id="soundIcon" style="width: 18px; height: 18px;"></i>
+        </button>
+
+        <!-- User Session Indicator & Sign Out -->
+        <div class="user-session-chip" id="userSessionChip" style="display: none;">
+          <span class="user-session-name" id="sessionUserName"></span>
+          <button type="button" class="nm-btn nm-icon-btn" id="signOutBtn" title="تسجيل الخروج">
+            <i data-lucide="log-out" style="width: 16px; height: 16px;"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================
+         VIEW 1: REGISTRATION / SIGN UP VIEW
+         ======================================================== -->
+    <main class="view-section" id="registerSection">
+      <div class="auth-card-container">
+        <div class="nm-card">
+          <div class="auth-card-header">
+            <div class="cosmic-icon-wrap">
+              <i data-lucide="user-plus" style="width: 32px; height: 32px; color: var(--accent-cyan);"></i>
+            </div>
+            <h2 id="authHeading">انضم إلى أسترو وورلد</h2>
+            <p id="authSubheading">سجّل بياناتك للانطلاق في رحلتك الفضائية مع أسترو</p>
+          </div>
+
+          <form id="registerForm" autocomplete="off" novalidate>
+            <!-- Language Selection at Registration Only -->
+            <div class="form-group">
+              <label id="labelMissionLang">لغة الاستكشاف (Language)</label>
+              <div class="lang-selector-group signup-lang-group" role="group" aria-label="Language selection">
+                <button type="button" class="lang-btn active" data-lang="ar">العربية</button>
+                <button type="button" class="lang-btn" data-lang="en">English</button>
+                <button type="button" class="lang-btn" data-lang="fr">Français</button>
+              </div>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="fullNameInput" id="labelFullName">الاسم الكامل</label>
+              <div class="input-nm-wrap">
+                <input type="text" id="fullNameInput" class="input-nm" placeholder="أدخل اسمك الكريم..." required>
+                <span class="input-icon"><i data-lucide="user" style="width: 18px; height: 18px;"></i></span>
+              </div>
+            </div>
+
+            <!-- Age (5 - 12) -->
+            <div class="form-group">
+              <label for="ageInput" id="labelAge">السن (العمر: 5 - 12 سنة)</label>
+              <div class="input-nm-wrap">
+                <input type="number" id="ageInput" class="input-nm" placeholder="بين 5 و 12 سنة" min="5" max="12" required>
+                <span class="input-icon"><i data-lucide="calendar" style="width: 18px; height: 18px;"></i></span>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="emailInput" id="labelEmail">البريد الإلكتروني (جيميل)</label>
+              <div class="input-nm-wrap">
+                <input type="email" id="emailInput" class="input-nm" placeholder="astronaut@gmail.com" required dir="ltr">
+                <span class="input-icon"><i data-lucide="mail" style="width: 18px; height: 18px;"></i></span>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label for="passwordInput" id="labelPassword">كلمة المرور</label>
+              <div class="input-nm-wrap">
+                <input type="password" id="passwordInput" class="input-nm" placeholder="••••••••" required dir="ltr">
+                <span class="input-icon"><i data-lucide="lock" style="width: 18px; height: 18px;"></i></span>
+                <button type="button" class="toggle-password" id="togglePasswordBtn" tabindex="-1">
+                  <i data-lucide="eye" id="eyeIcon" style="width: 18px; height: 18px;"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span id="submitBtnText">تسجيل الدخول إلى ناسا</span>
+              <i data-lucide="rocket" style="width: 20px; height: 20px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================================
+         VIEW 2: APPLE iPHONE SETUP EXPERIENCE
+         ======================================================== -->
+    <div class="iphone-setup-overlay" id="iphoneSetupOverlay">
+      <div class="iphone-screen-area">
+        <div class="iphone-hello-container" id="iphoneHelloContainer">
+          <div class="iphone-hello-text" id="iphoneHelloText">مرحباً</div>
+        </div>
+
+        <div class="iphone-swipe-hint" id="iphoneHint">
+          <div class="home-bar-pill"></div>
+          <span id="iphoneHintText">مرحباً بك في أسترو وورلد</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         VIEW 3: ASTRO WORLD DASHBOARD & ASSISTANT "أسترو"
+         ======================================================== -->
+    <section class="dashboard-view" id="dashboardSection">
+      
+      <!-- Top Dynamic Header -->
+      <div class="welcome-banner">
+        <div class="welcome-title-badge">
+          <h2 id="dashWelcomeTitle">مرحباً بك في أسترو وورلد</h2>
+        </div>
+        <p id="dashWelcomeSubtitle">المحطة الفضائية الرئيسية - وكالة ناسا</p>
+      </div>
+
+      <div class="dashboard-layout" id="dashboardLayout">
+        
+        <!-- LEFT COLUMN: Astro NASA Personal Assistant (المساعد أسترو في أقصى اليسار) -->
+        <aside class="astro-assistant-pod" id="astroAssistantPod">
+          <div class="astro-identity-pill">
+            <span class="status-online" id="astroStatusLabel">أسترو متصل ومستعد</span>
+            <span style="color: var(--accent-cyan); font-weight: 800;">NASA ASTRO</span>
+          </div>
+
+          <!-- Astor Visual Stage -->
+          <div class="astro-visual-stage" id="astorVisualStage" title="انقر للتفاعل مع المساعد أسترو وتشغيل الصوت!">
+            <canvas id="astor3DCanvas" class="astor-3d-canvas"></canvas>
+            <img src="assets/astro_hero.png" alt="Astor NASA Astronaut" class="astro-character-img" id="astroImg" style="display: none;">
+          </div>
+
+          <!-- Holographic Dialogue Box -->
+          <div class="astro-dialogue-box" id="astorDialogueBox" title="انقر للاستماع للصوت">
+            <div class="dialogue-header">
+              <span class="dialogue-title">
+                <i data-lucide="bot" style="width: 15px; height: 15px;"></i>
+                <span id="astroNameTag">المساعد الذكي أسترو</span>
+              </span>
+              <div class="dialogue-header-actions">
+                <button type="button" class="voice-speak-pill" id="speakAstorBtn" title="نطق المساعد أسترو">
+                  <i data-lucide="volume-2" style="width: 14px; height: 14px;"></i>
+                  <span id="voiceStatusText">صوت أسترو</span>
+                </button>
+                <div class="typing-indicator" id="typingIndicator">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+            <div class="dialogue-text">
+              <span id="astroTypewriterText"></span>
+              <span class="dialogue-cursor" id="astroCursor"></span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CENTER / RIGHT COLUMN: EXPLORATION SECTOR -->
+        <section class="dashboard-center-panel" id="centerPanel">
+          
+          <!-- GATEWAY VIEW: Grand Start Button & Launch Video Stage -->
+          <div class="gateway-card" id="gatewayCard">
+            
+            <div class="gateway-start-view" id="gatewayStartView">
+              <div class="mission-status-pill">
+                <i data-lucide="radio" style="width: 15px; height: 15px;"></i>
+                <span id="missionStatusText">جاهز للانطلاق • المهمة رقم 01</span>
+              </div>
+
+              <h3 class="mission-title" id="gatewayTitle">ابدأ مغامرتك الكونية</h3>
+              <p class="mission-subtitle" id="gatewaySubtitle">
+                استكشف أسرار الكون، وعجائب الكواكب، وأحدث تكنولوجيا الفضاء في العالم بصحبة رفيقك الفضائي أسترو.
+              </p>
+
+              <!-- THE GRAND "ابدأ الآن" NEUMORPHIC BUTTON -->
+              <div class="start-mission-wrapper">
+                <div class="pulse-orbit-outer"></div>
+                <div class="pulse-orbit-inner"></div>
+
+                <button type="button" class="grand-start-btn" id="startNowBtn" aria-label="ابدأ الآن">
+                  <div class="btn-icon-wrap">
+                    <i data-lucide="compass" style="width: 30px; height: 30px;"></i>
+                  </div>
+                  <span class="btn-label" id="startBtnLabel">ابدأ الآن</span>
+                </button>
+              </div>
+                 
+              <div class="mission-notice-pill">
+                <i data-lucide="shield-check" style="width: 14px; height: 14px; color: #10b981;"></i>
+                <span id="missionAwaitingText">أسترو في انتظار توجيهاتك لبدء الرحلة</span>
+              </div>
+            </div>
+
+            <!-- CINEMATIC MANDATORY LAUNCH VIDEO (TRANSITION TO GALAXIES) -->
+            <div class="mission-video-stage" id="missionVideoStage" style="display: none;">
+              <div class="video-header-bar">
+                <div class="video-badge">
+                  <span class="pulse-beacon"></span>
+                  <span id="videoStatusTag">رحلة الانطلاق الكونية المباشرة • وكالة ناسا</span>
+                </div>
+                <div class="video-mission-code">NASA • MISSION-GALAXY-01</div>
+              </div>
+
+              <div class="video-frame-glow">
+                <video
+                  id="missionLaunchVideo"
+                  class="mission-launch-video"
+                  src="https://videotourl.com/videos/1794583824214-4e4c9f52-0d05-49d6-bbc3-3ba21fed4098.mp4"
+                  playsinline
+                  webkit-playsinline
+                  preload="auto"
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  tabindex="-1"
+                ></video>  
+                <div class="video-overlay-blocker" id="videoOverlayBlocker" title="فيديو انطلاق رحلة الفضاء (جاري العرض بدون توقف)"></div>
+              </div>
+
+              <div class="video-footer-bar">
+                <div class="video-countdown-wrap">
+                  <i data-lucide="compass" class="spin-compass" style="width: 16px; height: 16px; color: var(--accent-cyan);"></i>
+                  <span id="videoFooterText">الانطلاق جاري عبر الزمكان الكوني... استعد لبلوغ أعماق المجرات</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ========================================================
+               STAGE 1: GALAXIES EXPLORATION (استكشاف المجرات)
+               ======================================================== -->
+          <div class="exploration-hub" id="explorationHub" style="display: none;">
+
+            <div class="sector-content" id="sectorGalaxies">
+              <div class="sector-intro-wrap">
+                <div class="sector-intro">
+                  <h4 id="secGalaxiesTitle">🌌 استكشاف المجرات الكونية العميقة</h4>
+                  <p id="secGalaxiesDesc">انقر على زر ديسكفري لمجرة درب التبانة لدخول نظامنا الشمسي واستكشاف جميع كواكبه بتقنية ثلاثية الأبعاد واقعية.</p>
+                </div>
+              </div>
+
+              <!-- NASA Live API Search -->
+              <div class="nasa-live-search-card">
+                <div class="nasa-search-header">
+                  <div class="nasa-api-chip">
+                    <img src="assets/nasa-logo.svg" alt="NASA" style="width: 22px; height: 18px;">
+                    <span>NASA Live API • أرشيف ناسا الفضائي المفتوح</span>
+                  </div>
+                  <span class="nasa-api-status" id="nasaApiStatus">متصل ومحدث مباشرة من ناسا ⚡</span>
+                </div>
+                <div class="nasa-search-bar">
+                  <div class="input-nm-wrap" style="flex: 1;">
+                    <input type="text" id="nasaSearchInput" class="input-nm" placeholder="ابحث في تلسكوبات ناسا (مثال: James Webb, Hubble, Nebula, Black Hole)...">
+                    <span class="input-icon"><i data-lucide="search" style="width: 18px; height: 18px;"></i></span>
+                  </div>
+                  <button type="button" class="nm-btn nasa-search-btn" id="nasaSearchBtn">
+                    <i data-lucide="telescope" style="width: 16px; height: 16px;"></i>
+                    <span id="nasaSearchBtnText">بحث كوني</span>
+                  </button>
+                </div>
+                <div class="nasa-search-results-grid" id="nasaSearchResults" style="display: none;"></div>
+              </div>
+
+              <!-- Galaxies Grid (Pure Images with Discovery Button, Milky Way unlocked, others locked) -->
+              <div class="galaxies-grid" id="galaxiesGrid"></div>
+            </div>
+
+          </div>
+
+          <!-- ========================================================
+               STAGE 2: REALISTIC 3D SOLAR SYSTEM ORRERY (المجموعة الشمسية)
+               ======================================================== -->
+          <div class="solar-system-stage" id="solarSystemStage" style="display: none;">
+            
+            <!-- Top Controls Toolbar -->
+            <div class="solar-toolbar">
+              <button type="button" class="nm-btn return-galaxies-btn" id="returnToGalaxiesBtn" title="العودة إلى المجرات">
+                <i data-lucide="arrow-right" id="returnGalaxiesIcon" style="width: 16px; height: 16px;"></i>
+                <span id="returnGalaxiesText">العودة للمجرات</span>
+              </button>
+
+              <div class="solar-title-badge">
+                <span class="live-orbit-dot"></span>
+                <span id="solarTitleText">المجموعة الشمسية ثلاثية الأبعاد • مجرة درب التبانة</span>
+              </div>
+
+              <div class="solar-actions-group">
+                <button type="button" class="nm-btn nm-icon-btn" id="solarFullscreenBtn" title="ملء الشاشة بالكامل (True Fullscreen)">
+                  <i data-lucide="maximize" id="solarFullscreenIcon" style="width: 17px; height: 17px;"></i>
+                </button>
+                <button type="button" class="nm-btn nm-icon-btn" id="solarPauseMotionBtn" title="إيقاف / تشغيل الحركة">
+                  <i data-lucide="pause" id="solarMotionIcon" style="width: 17px; height: 17px;"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Celestial Selector Pills -->
+            <div class="solar-selector-strip" id="solarSelectorStrip">
+              <!-- Dynamically populated to match current language seamlessly -->
+            </div>
+
+            <!-- 3D WebGL Canvas Area -->
+            <div class="solar-canvas-wrapper" id="solarCanvasWrapper">
+              <canvas id="solarCanvas" class="solar-canvas"></canvas>
+              <div class="solar-canvas-hint">
+                <i data-lucide="mouse-pointer" style="width: 14px; height: 14px;"></i>
+                <span id="solarHintText">انقر على أي كوكب للانتقال إليه وتكبيره ثلاثي الأبعاد • اسحب للتدوير • عجلة الماوس للتقريب</span>
+              </div>
+            </div>
+
+            <!-- Interactive Planet / Sun / Moon NASA HUD Info Panel -->
+            <div class="planet-hud-card" id="planetHUD" style="display: none;">
+              <div class="planet-hud-header">
+                <div class="planet-hud-title-wrap">
+                  <span class="planet-type-tag" id="hudBodyType">كوكب صخري</span>
+                  <h3 id="hudBodyName">كوكب الأرض</h3>
+                </div>
+                <button type="button" class="nm-btn nm-icon-btn hud-close-btn" id="closePlanetHUDBtn" title="إغلاق والعودة للمدارات">
+                  <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+                </button>
+              </div>
+
+              <!-- Discovery Date & Historical Context (تاريخ الاكتشاف) -->
+              <div class="planet-discovery-box">
+                <div class="discovery-header">
+                  <i data-lucide="history" style="width: 16px; height: 16px; color: var(--accent-orange);"></i>
+                  <span id="hudDiscoveryTitle">تاريخ الاكتشاف والرحلات الاستكشافية</span>
+                </div>
+                <p id="hudBodyDiscovery" class="discovery-text"></p>
+              </div>
+
+              <!-- Scientific Specs Grid -->
+              <div class="planet-specs-grid">
+                <div class="spec-pill">
+                  <span class="spec-label" id="hudLabelGravity">الجاذبية</span>
+                  <span class="spec-value" id="hudBodyGravity">9.8 م/ث²</span>
+                </div>
+                <div class="spec-pill">
+                  <span class="spec-label" id="hudLabelTemp">الحرارة</span>
+                  <span class="spec-value" id="hudBodyTemp">15°C</span>
+                </div>
+                <div class="spec-pill">
+                  <span class="spec-label" id="hudLabelMoons">الأقمار</span>
+                  <span class="spec-value" id="hudBodyMoons">1 قمر</span>
+                </div>
+                <div class="spec-pill">
+                  <span class="spec-label" id="hudLabelOrbit">الدورة المدارية</span>
+                  <span class="spec-value" id="hudBodyOrbit">365.25 يوم</span>
+                </div>
+              </div>
+
+              <div class="planet-hud-footer">
+                <button type="button" class="voice-speak-pill" id="speakPlanetBtn">
+                  <i data-lucide="volume-2" style="width: 15px; height: 15px;"></i>
+                  <span id="hudSpeakBtnText">استمع لشرح أسترو</span>
+                </button>
+                <button type="button" class="nm-btn" id="hudResetOrbitBtn">
+                  <i data-lucide="scan" style="width: 15px; height: 15px;"></i>
+                  <span id="hudResetOrbitText">عودة للمدارات الكاملة</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- NASA Official Deep Space Inspection Modal -->
+  <div class="nasa-modal-overlay" id="nasaModal" style="display: none;">
+    <div class="nasa-modal-card">
+      <div class="nasa-modal-header">
+        <div class="nasa-modal-title-group">
+          <img src="assets/nasa-logo.svg" alt="NASA" style="width: 26px; height: 22px;">
+          <div>
+            <h4 id="nasaModalTitle">بيانات تلسكوب ناسا الرسمي</h4>
+            <span class="nasa-modal-id" id="nasaModalId">NASA ID: PIA04921</span>
+          </div>
+        </div>
+        <button type="button" class="nm-btn nm-icon-btn" id="closeNasaModalBtn" title="إغلاق">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+
+      <div class="nasa-modal-body">
+        <div class="nasa-modal-image-wrap">
+          <img src="" alt="NASA Deep Space Capture" id="nasaModalImg">
+          <div class="nasa-modal-loader" id="nasaModalLoader">
+            <span class="cosmic-spinner"></span>
+            <span>جاري تحميل الصورة فائقة الدقة من خوادم ناسا...</span>
+          </div>
+        </div>
+        <div class="nasa-modal-info">
+          <div class="nasa-info-badges">
+            <span class="badge-pill" id="nasaModalCenter">NASA Center</span>
+            <span class="badge-pill" id="nasaModalDate">Date</span>
+          </div>
+          <p id="nasaModalDesc" class="nasa-modal-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Script Modules -->
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="astro-3d.js"></script>
+  <script src="solar-system-3d.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

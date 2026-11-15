@@ -1,0 +1,4 @@
+[8512:25032:1114/215644.202:WARNING:net\dns\dns_config_service_win.cc:607] Failed to read DnsConfig.
+[8512:21592:1114/215652.717:WARNING:chrome\browser\extensions\external_registry_loader_win.cc:283] Error observing HKLM: 5
+[8512:21592:1114/215652.725:WARNING:chrome\browser\extensions\external_registry_loader_win.cc:294] Error observing HKCU: Access is denied. (0x5)
+[8512:25032:1114/215652.967:WARNING:net\dns\dns_config_service_win.cc:607] Failed to read DnsConfig.

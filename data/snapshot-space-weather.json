@@ -1,0 +1,22 @@
+{
+  "snapshotDate": "2026-11-14",
+  "generatedAt": "2026-11-14T00:00:00Z",
+  "source": "NASA DONKI API (CCMC snapshot)",
+  "badge": "NASA data SNAPSHOT, saved 2026-11-14",
+  "recentFlares": [
+    {
+      "flrID": "2026-10-04T06:13:00-FLR-001",
+      "classType": "B3.2",
+      "peakTime": "2026-10-04T06:19Z",
+      "note": "Minor solar flare peaking at B3.2.",
+      "riskLevel": "calm"
+    }
+  ],
+  "activeSEP": false,
+  "recentCME": {
+    "activityID": "2026-10-01T02:36:00-CME-001",
+    "startTime": "2026-10-01T02:36Z",
+    "speed": 450,
+    "note": "Faint slow CME observed."
+  }
+}

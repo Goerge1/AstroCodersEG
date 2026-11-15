@@ -1,0 +1,78 @@
+{
+  "moon": {
+    "id": "moon",
+    "name_en": "Moon (Lunar South Pole - Artemis Base Camp)",
+    "name_ar": "القمر (القطب الجنوبي - قاعدة أرتميس)",
+    "atmosphere": {
+      "desc_en": "Practically zero air (hard vacuum)",
+      "desc_ar": "انعدام تام للهواء (فراغ شبه تام)",
+      "pressure_kpa": 0
+    },
+    "gravity": {
+      "value_m_s2": 1.62,
+      "earth_ratio": 0.166,
+      "desc_en": "About 1/6th of Earth gravity (you can jump 6 times higher!)",
+      "desc_ar": "حوالي سدس جاذبية الأرض (يمكنك القفز لارتفاع أعلى بـ 6 مرات!)"
+    },
+    "temperature": {
+      "day_c": 120,
+      "night_c": -130,
+      "deep_craters_c": -246
+    },
+    "radio_delay_seconds": 1.28,
+    "day_night_cycle": {
+      "day_length_earth_days": 14,
+      "night_length_earth_days": 14,
+      "game_scaled_turns": "3 turns of darkness",
+      "desc_en": "A single lunar night lasts about 14 Earth days in total darkness with zero solar power. In our 10-turn game, it lasts 3 turns.",
+      "desc_ar": "يستمر الليل القمري الواحد حوالي 14 يوماً أرضياً في ظلام دامس بدون طاقة شمسية. في لعبتنا المكونة من 10 أدوار، يستمر 3 أدوار."
+    },
+    "ice_resource": {
+      "present": true,
+      "location": "Permanently shadowed craters (e.g. Shackleton Crater)",
+      "desc_en": "Water ice is trapped in freezing shadows and can be melted for drinking and making rocket fuel!",
+      "desc_ar": "يوجد جليد مائي في قيعان الفوهات المظلمة دائماً ويمكن صهره للشرب وصنع وقود الصواريخ!"
+    },
+    "sourceUrl": "https://www.nasa.gov/artemis-camp-manifesto/"
+  },
+  "mars": {
+    "id": "mars",
+    "name_en": "Mars (Jezero Crater - Perseverance Landing Site)",
+    "name_ar": "المريخ (فوهة جيزيرو - موقع هبوط بيرسيفيرنس)",
+    "atmosphere": {
+      "desc_en": "Thin atmosphere mostly Carbon Dioxide (95% CO2), unbreathable",
+      "desc_ar": "غلاف جوي رقيق جداً أغلبه ثاني أكسيد الكربون (95%) وغير قابل للتنفس",
+      "pressure_kpa": 0.6
+    },
+    "gravity": {
+      "value_m_s2": 3.72,
+      "earth_ratio": 0.38,
+      "desc_en": "About 38% of Earth gravity (a 100 kg person weighs only 38 kg)",
+      "desc_ar": "حوالي 38% من جاذبية الأرض (شخص وزنه 100 كجم يزن 38 كجم فقط)"
+    },
+    "temperature": {
+      "day_c": 20,
+      "night_c": -73,
+      "polar_winter_c": -125
+    },
+    "radio_delay_seconds": {
+      "min_seconds": 180,
+      "max_seconds": 1320,
+      "min_minutes": 3,
+      "max_minutes": 22,
+      "desc_en": "Radio signals take 3 to 22 minutes each way depending on where Earth and Mars are in their orbits!",
+      "desc_ar": "تستغرق إشارات الراديو من 3 إلى 22 دقيقة في الاتجاه الواحد حسب موقع الكوكبين في مداريهما!"
+    },
+    "day_night_cycle": {
+      "sol_length_hours": 24.66,
+      "sol_name_en": "Sol (24 hours and 39.5 minutes)",
+      "sol_name_ar": "صول (24 ساعة و39.5 دقيقة)"
+    },
+    "dust_storms": {
+      "frequency": "Occasional local to global dust storms",
+      "effect_en": "Red dust blankets solar panels and cuts sunlight by 50% to 90%!",
+      "effect_ar": "الغبار الأحمر يغطي الألواح الشمسية ويحجب ضوء الشمس بنسبة 50% إلى 90%!"
+    },
+    "sourceUrl": "https://mars.nasa.gov/mars2020/mission/science/landing-site/"
+  }
+}

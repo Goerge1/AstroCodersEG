@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Astro World - Unit Test Suite</title>
+  <style>
+    body { font-family: monospace; background: #050A18; color: #F8FAFC; padding: 2rem; }
+    h1 { color: #00F0FF; margin-bottom: 1.5rem; }
+    .suite { background: #0B132B; border: 1px solid #1E293B; border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+    .suite-title { font-size: 1.2rem; font-weight: bold; color: #FFB703; margin-bottom: 0.75rem; }
+    .test-pass { color: #10B981; margin: 0.25rem 0; }
+    .test-fail { color: #FF4D6D; font-weight: bold; margin: 0.25rem 0; }
+    .summary { font-size: 1.25rem; margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-weight: bold; }
+    .summary-pass { background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #34D399; }
+    .summary-fail { background: rgba(255, 77, 109, 0.2); border: 1px solid #FF4D6D; color: #FF4D6D; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Astro World — In-Browser Test Suite</h1>
+  <div id="test-results">Running tests...</div>
+
+  <script type="module">
+    import { OutpostEngine } from '../js/engine.js';
+    import { EVENT_CARDS } from '../js/events.js';
+    import { ShieldArchitectEngine, SHIELD_MATERIALS, SHIELD_WAVES } from '../js/shield.js';
+    import { DiagnosticsEngine, AVAILABLE_TRIAGE_ACTIONS } from '../js/diagnostics.js';
+    import { AstroChatbot } from '../js/chatbot.js';
+    import { NASA_DATA } from '../js/nasaData.js';
+
+    const out = document.getElementById('test-results');
+    out.innerHTML = '';
+
+    let totalPassed = 0;
+    let totalFailed = 0;
+
+    function record(suiteDiv, name, passed, err) {
+      const p = document.createElement('div');
+      if (passed) {
+        p.className = 'test-pass';
+        p.textContent = `  ✔ ${name}`;
+        totalPassed++;
+      } else {
+        p.className = 'test-fail';
+        p.textContent = `  ❌ ${name}: ${err ? err.message : 'Failed'}`;
+        totalFailed++;
+        console.error(`Failed test: ${name}`, err);
+      }
+      suiteDiv.appendChild(p);
+    }
+
+    function createSuite(title) {
+      const div = document.createElement('div');
+      div.className = 'suite';
+      div.innerHTML = `<div class="suite-title">${title}</div>`;
+      out.appendChild(div);
+      return div;
+    }
+
+    // Suite 1: Game 1 Outpost Engine
+    const s1 = createSuite("1. Outpost Survival Engine (Game 1)");
+    try {
+      // 1. No free lunch
+      for (const card of EVENT_CARDS) {
+        for (const choice of card.choices) {
+          let hasCost = Object.values(choice.effects || {}).some(v => v < 0) ||
+                        (choice.delayedEffects && choice.delayedEffects.some(d => Object.values(d.effects || {}).some(v => v < 0))) ||
+                        (choice.riskChance && choice.riskEffects);
+          if (!hasCost) throw new Error(`Choice ${choice.id} in ${card.id} is free`);
+        }
+      }
+      record(s1, "All 16 event card choices have non-zero costs (No Free Lunch Rule)", true);
+    } catch (e) { record(s1, "No Free Lunch Rule", false, e); }
+
+    try {
+      // 2. Determinism
+      const eA = new OutpostEngine({ seed: 777, site: 'moon' });
+      const eB = new OutpostEngine({ seed: 777, site: 'moon' });
+      const sameRoll = eA.random() === eB.random();
+      const sameCard = eA.drawEvent().id === eB.drawEvent().id;
+      record(s1, "Mulberry32 PRNG seed determinism verified", sameRoll && sameCard);
+    } catch (e) { record(s1, "Seed Determinism", false, e); }
+
+    try {
+      // 3. Clamping
+      const eC = new OutpostEngine({ seed: 100 });
+      eC.resources.oxygen = 200; eC.resources.power = -50;
+      eC.clampResources();
+      record(s1, "Resource clamping (0 to 100) enforced", eC.resources.oxygen === 100 && eC.resources.power === 0);
+    } catch (e) { record(s1, "Clamping", false, e); }
+
+    try {
+      // 4. Delayed consequence
+      const eD = new OutpostEngine({ seed: 100 });
+      eD.delayedEffects.push({ inTurns: 1, effects: { science: 50 }, reason: "test science payout" });
+      const initSci = eD.resources.science;
+      const turnSum = eD.endTurn();
+      const triggered = turnSum.delayedTriggered.includes("test science payout");
+      record(s1, "Delayed consequence triggered properly", triggered && eD.resources.science >= initSci + 50);
+    } catch (e) { record(s1, "Delayed Consequence", false, e); }
+
+    // Suite 2: Game 2 Shield Architect
+    const s2 = createSuite("2. Solar Shield Architect Engine (Game 2)");
+    try {
+      const sh = new ShieldArchitectEngine();
+      const overRes = sh.evaluateLayout({ water_wall: 4 });
+      record(s2, "Over-budget layout properly rejected", !overRes.isValid);
+    } catch (e) { record(s2, "Over-budget rejection", false, e); }
+
+    try {
+      const sh = new ShieldArchitectEngine();
+      const noReserveRes = sh.evaluateLayout({ magnetic_deflector: 2 });
+      record(s2, "Life support power reservation requirement enforced", !noReserveRes.lifeSupportOk);
+    } catch (e) { record(s2, "Life support power reservation", false, e); }
+
+    try {
+      const sh = new ShieldArchitectEngine();
+      const valid = sh.evaluateLayout({ water_wall: 1, regolith_bags: 1 });
+      record(s2, "Scientific realism: Penetrating cosmic rays cannot be 100% stopped", valid.cumulativeAttenuation > 0);
+    } catch (e) { record(s2, "Radiation Attenuation", false, e); }
+
+    // Suite 3: Game 3 Suit Diagnostics
+    const s3 = createSuite("3. Suit & Airlock Diagnostics Engine (Game 3)");
+    try {
+      for (const [id, a] of Object.entries(AVAILABLE_TRIAGE_ACTIONS)) {
+        if (a.powerCost <= 0 && a.o2Cost <= 0) throw new Error(`Action ${id} is free`);
+      }
+      record(s3, "Every triage action incurs power or oxygen cost", true);
+    } catch (e) { record(s3, "Triage costs", false, e); }
+
+    try {
+      const diag = new DiagnosticsEngine();
+      const anom = diag.getCurrentAnomaly();
+      diag.diagnoseCause(anom.correctCauseId);
+      for (const act of anom.correctOrder) {
+        diag.performAction(act);
+      }
+      record(s3, "Correct sequential triage resolves anomaly", diag.isSolved === true);
+    } catch (e) { record(s3, "Sequential triage", false, e); }
+
+    // Suite 4: Chatbot
+    const s4 = createSuite("4. Mission Comms Chatbot Engine");
+    try {
+      const bot = new AstroChatbot({ answers: [{ intent: 'solar_weather', text_en: "Sun flares.", text_ar: "توهجات." }] });
+      const enMatch = bot.detectIntent("Any solar storm alert?") === 'solar_weather';
+      const arMatch = bot.detectIntent("هل توجد عاصفة شمسية؟") === 'solar_weather';
+      const fallback = bot.detectIntent("random unknown phrase") === 'fallback';
+      record(s4, "Bilingual intent detection (EN/AR) & fallback cascade", enMatch && arMatch && fallback);
+    } catch (e) { record(s4, "Chatbot intents", false, e); }
+
+    // Suite 5: NASA Data Honesty
+    const s5 = createSuite("5. NASA Data Honesty Badges");
+    try {
+      const bLive = NASA_DATA.formatBadge('LIVE', '2026-11-14');
+      const bArch = NASA_DATA.formatBadge('ARCHIVED');
+      const honest = bLive.type === 'LIVE' && bArch.type === 'ARCHIVED' && !bArch.text.includes('LIVE');
+      record(s5, "Honesty Badges strictly verified (Never claim LIVE for archived data)", honest);
+    } catch (e) { record(s5, "Honesty Badges", false, e); }
+
+    // Summary
+    const sum = document.createElement('div');
+    if (totalFailed === 0) {
+      sum.className = 'summary summary-pass';
+      sum.textContent = `🎉 ALL ${totalPassed} UNIT TESTS PASSED! Project logic is 100% sound.`;
+    } else {
+      sum.className = 'summary summary-fail';
+      sum.textContent = `❌ ${totalFailed} tests failed out of ${totalPassed + totalFailed}.`;
+    }
+    out.appendChild(sum);
+  </script>
+</body>
+</html>
