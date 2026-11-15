@@ -198,6 +198,15 @@ html, body {
   object-fit: contain;
 }
 
+.team-logo-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
 .team-logo-badge {
   width: 50px;
   height: 50px;
@@ -213,9 +222,10 @@ html, body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.team-logo-badge:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px rgba(0, 229, 255, 0.7);
+.team-logo-wrapper:hover .team-logo-badge,
+.team-logo-wrapper.preview-open .team-logo-badge {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.75);
 }
 
 .team-logo-badge img {
@@ -223,6 +233,97 @@ html, body {
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-full);
+  display: block;
+}
+
+.team-logo-preview-card {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 250px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(6, 12, 26, 0.96);
+  border: 1.5px solid rgba(0, 229, 255, 0.55);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 229, 255, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px) scale(0.92);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
+  z-index: 10000;
+}
+
+[dir="ltr"] .team-logo-preview-card {
+  right: auto;
+  left: 0;
+}
+
+.team-logo-wrapper:hover .team-logo-preview-card,
+.team-logo-wrapper:focus-within .team-logo-preview-card,
+.team-logo-wrapper.preview-open .team-logo-preview-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.team-logo-preview-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.35) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.team-logo-preview-img {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 229, 255, 0.7);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.team-logo-wrapper:hover .team-logo-preview-img {
+  transform: scale(1.02);
+}
+
+.team-logo-preview-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.team-logo-preview-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+}
+
+.team-logo-preview-sub {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 500;
 }
 
 .team-hero-badge {
@@ -3856,6 +3957,19 @@ html[lang="fr"] .planet-discovery-box {
   color: #fbbf24;
 }
 
+.iss-stat-pill.fullscreen-pill {
+  cursor: pointer;
+  background: rgba(14, 116, 144, 0.4);
+  border-color: rgba(6, 182, 212, 0.6);
+  user-select: none;
+}
+
+.iss-stat-pill.fullscreen-pill:hover {
+  background: rgba(14, 116, 144, 0.65);
+  border-color: rgba(34, 211, 238, 0.9);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+}
+
 .iss-station-tag {
   pointer-events: auto;
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(0, 229, 255, 0.2));
@@ -4004,36 +4118,39 @@ html[lang="fr"] .planet-discovery-box {
 .iss-touch-zone {
   pointer-events: auto;
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 24px;
+  left: 24px;
   z-index: 12;
   touch-action: none;
 }
 
 [dir="rtl"] .iss-touch-zone {
   left: auto;
-  right: 20px;
+  right: 24px;
 }
 
 .virtual-joystick-base {
   width: 104px;
   height: 104px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(15, 23, 42, 0.65) 0%, rgba(30, 41, 59, 0.75) 100%);
-  border: 2px solid rgba(0, 229, 255, 0.4);
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.85) 100%);
+  border: 2px solid rgba(0, 229, 255, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   user-select: none;
+  box-sizing: border-box;
 }
 
 .virtual-joystick-stick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 44px;
   height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
   border-radius: 50%;
   background: linear-gradient(135deg, #38bdf8, #0284c7);
   border: 2px solid #ffffff;
@@ -4041,6 +4158,7 @@ html[lang="fr"] .planet-discovery-box {
   pointer-events: none;
   transform: translate(0px, 0px);
   transition: box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
 

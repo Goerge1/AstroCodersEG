@@ -1,15 +1,9 @@
-// ========================================================
-// ASTRO WORLD (أسترو وورلد) - APPLICATION LOGIC ENGINE
-// Senior Full-Stack & UI/UX Specialist Implementation
-// ========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lucide Icons
   if (window.lucide) {
     window.lucide.createIcons();
   }
 
-  // Application State - Dark Cosmic Theme Locked Permanently
   try { localStorage.removeItem('ASTRO_THEME'); } catch (e) { }
   document.documentElement.setAttribute('data-theme', 'dark');
 
@@ -28,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     threeAnimId: null
   };
 
-  // Comprehensive Multi-Language Dictionary
   const i18n = {
     ar: {
       dir: 'rtl',
@@ -85,7 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
       launcherBannerBadge: 'محاكاة ثلاثية الأبعاد • NASA ISS Space Mission',
       launcherBannerTitle: '🛰️ مهمة محطة الفضاء الدولية (ISS 3D Mission)',
       launcherBannerDesc: 'عش تجربة رائد فضاء حقيقي داخل محطة الفضاء الدولية بتقنية ثلاثية الأبعاد! تجوّل بحرية عبر 6 وحدات، وتصدَّ للحطام الفضائي، وازرع الخس الفضائي، وأصلح أنظمة الأكسجين مع أسترو.',
-      launchOutpostBtn: 'انطلق إلى محطة ISS 🚀'
+      launchOutpostBtn: 'انطلق إلى محطة ISS 🚀',
+      secGalaxiesTitle: 'استكشاف المجرات الكونية العميقة',
+      secGalaxiesDesc: 'انقر على زر ديسكفري لمجرة درب التبانة لدخول نظامنا الشمسي واستكشاف جميع كواكبه بتقنية ثلاثية الأبعاد واقعية.',
+      nasaApiChip: 'NASA Live API • أرشيف ناسا الفضائي المفتوح',
+      nasaApiStatus: 'متصل ومحدث مباشرة من ناسا',
+      nasaSearchPlaceholder: 'ابحث في تلسكوبات ناسا (مثال: James Webb, Hubble, Nebula, Black Hole)...',
+      nasaSearchBtn: 'بحث كوني'
     },
     en: {
       dir: 'ltr',
@@ -142,7 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
       launcherBannerBadge: '3D Simulation • NASA ISS Space Mission',
       launcherBannerTitle: '🛰️ ISS Space Station 3D Mission',
       launcherBannerDesc: 'Live the life of an astronaut inside the International Space Station in full 3D! Freely explore 6 modules, deflect orbital debris, harvest space lettuce, and repair life support with Astro.',
-      launchOutpostBtn: 'Board the ISS 🚀'
+      launchOutpostBtn: 'Board the ISS 🚀',
+      secGalaxiesTitle: 'Deep Cosmic Galaxies Exploration',
+      secGalaxiesDesc: 'Click the Discovery button on the Milky Way Galaxy to enter our Solar System and explore all its planets in realistic 3D.',
+      nasaApiChip: 'NASA Live API • Open NASA Space Archive',
+      nasaApiStatus: 'Connected & Updated Live from NASA',
+      nasaSearchPlaceholder: 'Search NASA Telescopes (e.g., James Webb, Hubble, Nebula, Black Hole)...',
+      nasaSearchBtn: 'Cosmic Search'
     },
     fr: {
       dir: 'ltr',
@@ -199,11 +204,16 @@ document.addEventListener('DOMContentLoaded', () => {
       launcherBannerBadge: 'Simulation 3D • NASA ISS Space Mission',
       launcherBannerTitle: '🛰️ Mission 3D Station Spatiale ISS',
       launcherBannerDesc: 'Vivez la vie d\'un astronaute dans la Station Spatiale Internationale en 3D ! Explorez 6 modules, repoussez les débris, cultivez la salade spatiale et réparez le support de vie.',
-      launchOutpostBtn: 'Embarquer sur l\'ISS 🚀'
+      launchOutpostBtn: 'Embarquer sur l\'ISS 🚀',
+      secGalaxiesTitle: 'Exploration des Galaxies Cosmiques Profondes',
+      secGalaxiesDesc: 'Cliquez sur le bouton Découverte de la Voie Lactée pour entrer dans notre système solaire et explorer toutes ses planètes en 3D réaliste.',
+      nasaApiChip: 'NASA Live API • Archives Spatiales Ouvertes de la NASA',
+      nasaApiStatus: 'Connecté et mis à jour en direct depuis la NASA',
+      nasaSearchPlaceholder: 'Rechercher dans les télescopes de la NASA (ex: James Webb, Hubble, Nébuleuse)...',
+      nasaSearchBtn: 'Recherche Cosmique'
     }
   };
 
-  // Domestic Data Catalog for Cosmic Sectors
   const cosmicCatalog = {
     galaxies: [
       {
@@ -264,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ],
 
-    // Complete Photorealistic 3D Solar System & Discovery History Database
     solarSystem: {
       sun: {
         id: 'sun',
@@ -653,7 +662,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-  // Sound Synthesizer (Native Web Audio API)
   function playSynthSound(type) {
     if (!state.soundEnabled) return;
     try {
@@ -723,11 +731,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ========================================================
-  // ULTRA-HIGH-FIDELITY NEURAL ARABIC VOICE ENGINE (Human Studio Quality)
-  // Primary: Cloud Neural Audio Stream (Studio-grade Arabic enunciation)
-  // Fallback: Browser Web Speech API
-  // ========================================================
   let availableVoices = [];
   function populateVoices() {
     if ('speechSynthesis' in window) {
@@ -739,7 +742,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.speechSynthesis.onvoiceschanged = populateVoices;
   }
 
-  // Active audio player instance & queue for seamless sentence chaining
   let activeAudio = null;
   let speechQueue = [];
   let isSpeakingSequence = false;
@@ -760,33 +762,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Prepares text for pristine Arabic phonetic recitation (removes Latin parentheticals, expands units)
   function prepareSpeechText(rawText, lang) {
     if (!rawText) return '';
     let text = rawText
-      // Remove emojis & decorative symbols
       .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
       .replace(/[•\*#_`~]/g, '');
 
     if (lang === 'ar') {
       text = text
-        // Remove Latin names inside parentheses, e.g. "درب التبانة (Milky Way)" -> "درب التبانة"
         .replace(/\s*\([A-Za-z0-9\s*#+._-]+\)/g, '')
-        // Expand scientific units and abbreviations into fluent Arabic words
         .replace(/كم\/ساعة/g, ' كيلومتراً في الساعة ')
         .replace(/كم\/ثانية/g, ' كيلومتراً في الثانية ')
         .replace(/م\/ث²/g, ' متراً لكل ثانية مربعة ')
         .replace(/س\.ض/g, ' سنة ضوئية ')
         .replace(/°C/g, ' درجة مئوية ')
         .replace(/—|–/g, '، ')
-        // Ensure commas give natural breathing pauses
         .replace(/([،,])\s*/g, '$1 ')
         .replace(/\s+/g, ' ');
     }
     return text.trim();
   }
 
-  // Smart sentence chunker (max 120 chars per chunk at natural punctuation boundaries)
   function chunkSpeechText(text, maxLen = 120) {
     if (!text) return [];
     const tokens = text.split(/([.!؟،,\n]+)/);
@@ -821,7 +817,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return chunks;
   }
 
-  // Intelligent Voice Selector prioritizing Studio Neural & Natural Voices
   function selectBestVoice(targetLang) {
     if (!availableVoices || availableVoices.length === 0) {
       populateVoices();
@@ -833,19 +828,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const arVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ar'));
       if (arVoices.length === 0) return null;
 
-      // Priority 1: High-Fidelity Natural / Neural / Online voices (Edge & Windows 11 studio voices)
       const natural = arVoices.find(v => /natural|neural|online/i.test(v.name));
       if (natural) return natural;
 
-      // Priority 2: Google Arabic (Chrome high-quality TTS)
       const google = arVoices.find(v => /google/i.test(v.name));
       if (google) return google;
 
-      // Priority 3: Premium curated Arabic voices (Salma, Shakir, Hamed, Zariyah, Maged, Tarik, Laila, Naayf)
       const premium = arVoices.find(v => /salma|shakir|hamed|zariyah|fatima|maged|tarik|laila|naayf/i.test(v.name));
       if (premium) return premium;
 
-      // Priority 4: Regional Arabic voices (Saudi Arabia, Egypt)
       const regional = arVoices.find(v => /ar[-_](sa|eg)/i.test(v.lang));
       if (regional) return regional;
 
@@ -861,7 +852,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Offline Web Speech API fallback
   function fallbackSpeechSynthesis(chunk, lang, onDone) {
     if (!('speechSynthesis' in window)) {
       if (onDone) onDone();
@@ -885,7 +875,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Main Speech Dispatcher: Streams Cloud Neural Audio for natural human accent
   function speakAstorVoice(text) {
     if (!state.soundEnabled || state.astroMuted) return;
     stopAllSpeech();
@@ -900,7 +889,6 @@ document.addEventListener('DOMContentLoaded', () => {
     speechQueue = [...chunks];
     isSpeakingSequence = true;
 
-    // Trigger gestures & mouth
     if (window.astro3DController) {
       window.astro3DController.setSpeaking(true);
     }
@@ -930,7 +918,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fallbackSpeechSynthesis(chunk, lang, () => playNext());
       };
 
-      // 1. Try local server proxy first (/api/tts), fallback to direct Google TTS endpoint
       const proxyUrl = `/api/tts?q=${encodeURIComponent(chunk)}&tl=${targetCode}`;
       const directUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${targetCode}&client=tw-ob`;
 
@@ -962,16 +949,12 @@ document.addEventListener('DOMContentLoaded', () => {
     playNext();
   }
 
-  // ========================================================
-  // 3D INTERACTIVE ASTRO ASSISTANT (WebGL Rig, Gestures & Physics)
-  // ========================================================
   function initAstor3DScene() {
     if (window.initAstor3DSceneModern) {
       window.initAstor3DSceneModern();
     }
   }
 
-  // DOM Elements
   const htmlDoc = document.documentElement;
   const brandTitle = document.getElementById('brandTitle');
   const brandSubtitle = document.getElementById('brandSubtitle');
@@ -991,18 +974,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('registerForm');
   const registerSection = document.getElementById('registerSection');
 
-  // Session & Nav Elements
   const userSessionChip = document.getElementById('userSessionChip');
   const sessionUserName = document.getElementById('sessionUserName');
   const signOutBtn = document.getElementById('signOutBtn');
 
-  // iPhone Setup Elements
   const iphoneSetupOverlay = document.getElementById('iphoneSetupOverlay');
   const iphoneHelloContainer = document.getElementById('iphoneHelloContainer');
   const iphoneHelloText = document.getElementById('iphoneHelloText');
   const iphoneHint = document.getElementById('iphoneHint');
 
-  // Dashboard & Astor Pod Elements
   const dashboardSection = document.getElementById('dashboardSection');
   const dashWelcomeTitle = document.getElementById('dashWelcomeTitle');
   const dashWelcomeSubtitle = document.getElementById('dashWelcomeSubtitle');
@@ -1016,7 +996,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const astroTypewriterText = document.getElementById('astroTypewriterText');
   const typingIndicator = document.getElementById('typingIndicator');
 
-  // Gateway & Exploration Hub Elements
   const gatewayCard = document.getElementById('gatewayCard');
   const gatewayStartView = document.getElementById('gatewayStartView');
   const missionVideoStage = document.getElementById('missionVideoStage');
@@ -1032,7 +1011,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const returnGatewayBtn = document.getElementById('returnGatewayBtn');
   const returnBtnLabel = document.getElementById('returnBtnLabel');
 
-  // NASA Live API & Modal Elements
   const nasaSearchInput = document.getElementById('nasaSearchInput');
   const nasaSearchBtn = document.getElementById('nasaSearchBtn');
   const nasaSearchResults = document.getElementById('nasaSearchResults');
@@ -1046,7 +1024,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const nasaModalDate = document.getElementById('nasaModalDate');
   const nasaModalDesc = document.getElementById('nasaModalDesc');
 
-  // Hub Tabs & Grids
   const hubTabButtons = document.querySelectorAll('.hub-tab-btn');
   const tabLabelGalaxies = document.getElementById('tabLabelGalaxies');
   const tabLabelPlanets = document.getElementById('tabLabelPlanets');
@@ -1061,18 +1038,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const equipmentGrid = document.getElementById('equipmentGrid');
   const academySteps = document.getElementById('academySteps');
 
-  // Academy Quiz & Badge
   const quizOptions = document.getElementById('quizOptions');
   const astronautBadgeEarned = document.getElementById('astronautBadgeEarned');
   const badgeCadetName = document.getElementById('badgeCadetName');
 
-  // Controls
   const langButtons = document.querySelectorAll('.lang-btn');
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
   const toastContainer = document.getElementById('toastContainer');
 
-  // Supabase Modal
   const supabaseConfigBtn = document.getElementById('supabaseConfigBtn');
   const supabaseModal = document.getElementById('supabaseModal');
   const closeSupabaseModal = document.getElementById('closeSupabaseModal');
@@ -1083,7 +1057,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const supabaseDot = document.getElementById('supabaseDot');
   const supabaseStatusText = document.getElementById('supabaseStatusText');
 
-  // Toast Helper
   function showToast(message, type = 'info') {
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
@@ -1099,7 +1072,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3800);
   }
 
-  // Typewriter Engine for Astor
   function startAstroTypewriter(text, onComplete) {
     if (state.typewriterTimer) clearInterval(state.typewriterTimer);
     astroTypewriterText.textContent = '';
@@ -1125,7 +1097,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 24);
   }
 
-  // Trigger speech and typewriter together on user interaction with Astor
   function triggerAstorInteraction(customText) {
     playSynthSound('click');
     if (window.astro3DController) {
@@ -1138,7 +1109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Friendly wave on clicking Astor stage without repeating audio
   if (astorVisualStage) {
     astorVisualStage.addEventListener('click', () => {
       playSynthSound('click');
@@ -1146,7 +1116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Astro Mute / Voice Toggle Controller
   const muteAstorBtn = document.getElementById('muteAstorBtn') || document.getElementById('speakAstorBtn');
 
   function updateMuteButtonUI() {
@@ -1185,11 +1154,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render Cosmic Catalog into DOM
   function renderCosmicSectors() {
     const lang = state.currentLang;
 
-    // 1. Galaxies Grid (Unlocked: Discovery button | Locked: Lock badge)
     if (galaxiesGrid) {
       galaxiesGrid.innerHTML = cosmicCatalog.galaxies.map(g => {
         const isLocked = g.locked;
@@ -1216,7 +1183,6 @@ document.addEventListener('DOMContentLoaded', () => {
       loadNasaGalaxyImages();
     }
 
-    // 2. Planets Grid (if present)
     if (planetsGrid) {
       planetsGrid.innerHTML = cosmicCatalog.planets.map(p => `
         <div class="cosmic-item-card" data-planet="${p.id}">
@@ -1231,7 +1197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
     }
 
-    // 3. Space Equipment Grid (if present)
     if (equipmentGrid) {
       equipmentGrid.innerHTML = cosmicCatalog.equipment.map(e => `
         <div class="cosmic-item-card" data-equipment="${e.id}">
@@ -1246,7 +1211,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
     }
 
-    // 4. Academy Pathway Steps (if present)
     if (academySteps) {
       academySteps.innerHTML = cosmicCatalog.academy.map(s => `
         <div class="academy-step-card">
@@ -1259,14 +1223,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (window.lucide) window.lucide.createIcons();
 
-    // Attach card click handlers on .galaxy-cinematic-card
     document.querySelectorAll('.galaxy-cinematic-card').forEach(card => {
       card.addEventListener('click', (e) => {
         const galaxyId = card.dataset.galaxy;
         const galaxyData = cosmicCatalog.galaxies.find(g => g.id === galaxyId);
         if (!galaxyData) return;
 
-        // ── LOCKED GALAXY ──
         if (galaxyData.locked) {
           playSynthSound('error');
           if (window.astro3DController) window.astro3DController.pointAtCard();
@@ -1280,16 +1242,13 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // ── UNLOCKED MILKY WAY → Launch Solar System ──
         if (galaxyId === 'milkyway') {
-          // Launch Solar System experience whether clicking card or discovery button
           launchSolarSystemExperience();
           return;
         }
       });
     });
 
-    // Attach card click handlers so Astor explains any other clicked item
     document.querySelectorAll('.cosmic-item-card').forEach(card => {
       card.addEventListener('click', () => {
         const title = card.querySelector('h5')?.textContent || '';
@@ -1303,15 +1262,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // SOLAR SYSTEM 3D EXPERIENCE ENGINE
-  // ========================================================
 
   const dashboardLayout = document.getElementById('dashboardLayout');
   const solarSystemStage = document.getElementById('solarSystemStage');
   const planetHUD = document.getElementById('planetHUD');
 
-  // Populate HUD with data for a given celestial body id
   function showPlanetHUD(bodyId) {
     const data = cosmicCatalog.solarSystem[bodyId];
     if (!data || !planetHUD) return;
@@ -1326,7 +1281,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('hudBodyMoons').textContent = (typeof data.moons === 'object' ? data.moons[lang] || data.moons['en'] || data.moons['ar'] : data.moons);
     document.getElementById('hudBodyOrbit').textContent = (typeof data.orbit === 'object' ? data.orbit[lang] || data.orbit['en'] || data.orbit['ar'] : data.orbit);
 
-    // Contextual label adaptation for Sun / ISS / Planets
     const labelMoons = document.getElementById('hudLabelMoons');
     if (labelMoons) {
       if (bodyId === 'sun') {
@@ -1350,23 +1304,19 @@ document.addEventListener('DOMContentLoaded', () => {
     planetHUD.classList.add('hud-appear');
     setTimeout(() => planetHUD.classList.remove('hud-appear'), 600);
 
-    // Update active pill
     document.querySelectorAll('.celestial-pill').forEach(p => {
       p.classList.toggle('active', p.dataset.body === bodyId);
     });
 
-    // Astro speaks for this planet on first click
     const speech = data.speech && (data.speech[lang] || data.speech['ar']);
     if (speech) {
       triggerAstorInteraction(speech);
     }
   }
 
-  // Launch the full 3D Solar System experience
   function launchSolarSystemExperience() {
     playSynthSound('whoosh');
 
-    // Cinematic transition
     if (dashboardLayout) dashboardLayout.classList.add('solar-mode');
     if (explorationHub) explorationHub.style.display = 'none';
     if (gatewayCard) gatewayCard.style.display = 'none';
@@ -1379,10 +1329,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Astro docks to the left
     if (window.astro3DController) window.astro3DController.pointAtCard();
 
-    // Boot or resume the Three.js solar system in overview mode
     if (window.solarSystemController) {
       const canvas = document.getElementById('solarCanvas');
       const container = document.getElementById('solarCanvasWrapper');
@@ -1398,11 +1346,9 @@ document.addEventListener('DOMContentLoaded', () => {
       window.solarSystemController.resetOverview();
     }
 
-    // Hide any previous HUD so user starts in full panoramic view
     if (planetHUD) planetHUD.style.display = 'none';
     document.querySelectorAll('.celestial-pill').forEach(p => p.classList.remove('active'));
 
-    // Astro single welcome announcement for solar tour
     const msg = state.currentLang === 'ar'
       ? 'مرحباً بكم في جولتنا ثلاثية الأبعاد عبر المجموعة الشمسية! انقر على أي كوكب للاقتراب منه واستكشاف أسراره!'
       : state.currentLang === 'fr'
@@ -1411,7 +1357,6 @@ document.addEventListener('DOMContentLoaded', () => {
     triggerAstorInteraction(msg);
   }
 
-  // Return to Galaxies Hub
   const returnToGalaxiesBtn = document.getElementById('returnToGalaxiesBtn');
   if (returnToGalaxiesBtn) {
     returnToGalaxiesBtn.addEventListener('click', () => {
@@ -1423,16 +1368,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (explorationHub) explorationHub.style.display = 'flex';
       if (planetHUD) planetHUD.style.display = 'none';
-      // Pause solar system to save resources
       if (window.solarSystemController && window.solarSystemController.pause) {
         window.solarSystemController.pause();
       }
     });
   }
 
-  // ========================================================
-  // OUTPOST SURVIVAL GAMES EXPERIENCE LAUNCHER & RETURN
-  // ========================================================
   const outpostGamesStage = document.getElementById('outpostGamesStage');
   const outpostGamesMount = document.getElementById('outpostGamesMount');
   const navOutpostGamesBtn = document.getElementById('navOutpostGamesBtn');
@@ -1442,7 +1383,6 @@ document.addEventListener('DOMContentLoaded', () => {
   async function launchOutpostGamesExperience() {
     playSynthSound('whoosh');
 
-    // Ensure dashboard container is visible even if accessed before registering
     if (registerSection) registerSection.style.display = 'none';
     if (dashboardSection) {
       dashboardSection.style.display = 'block';
@@ -1473,7 +1413,6 @@ document.addEventListener('DOMContentLoaded', () => {
       window.astro3DController.pointAtCard();
     }
 
-    // Mount Outpost UI
     try {
       let mountFn = window.mountOutpostGames;
       if (!mountFn) {
@@ -1495,7 +1434,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('Outpost UI mount error:', err);
     }
 
-    // Astro single welcome announcement
     setTimeout(() => {
       const welcomeMsg = state.currentLang === 'ar'
         ? 'مرحباً بك على متن محطة الفضاء الدولية في مدار الأرض! تجوّل بين وحدات المحطة بحرية وكن مستعداً للمهام الطارئة!'
@@ -1518,7 +1456,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.currentUser) {
       if (explorationHub) explorationHub.style.display = 'flex';
     } else {
-      // If entered as guest from navbar, return smoothly to exploration hub
       if (explorationHub) {
         explorationHub.style.display = 'flex';
       } else if (gatewayCard) {
@@ -1537,7 +1474,6 @@ document.addEventListener('DOMContentLoaded', () => {
     returnFromOutpostBtn.addEventListener('click', returnFromOutpostExperience);
   }
 
-  // Solar System toolbar buttons
   const solarFullscreenBtn = document.getElementById('solarFullscreenBtn');
   const solarFullscreenIcon = document.getElementById('solarFullscreenIcon');
   const solarResetCamBtn = document.getElementById('solarResetCamBtn');
@@ -1547,7 +1483,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const hudResetOrbitBtn = document.getElementById('hudResetOrbitBtn');
   const speakPlanetBtn = document.getElementById('speakPlanetBtn');
 
-  // True Browser Native Fullscreen & CSS Stage Toggle
   if (solarFullscreenBtn && solarSystemStage) {
     solarFullscreenBtn.addEventListener('click', async () => {
       playSynthSound('click');
@@ -1555,7 +1490,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isCurrentlyFullscreen = document.fullscreenElement != null || solarSystemStage.classList.contains('fullscreen-mode');
 
       if (!isCurrentlyFullscreen) {
-        // 1. Enter True Native OS Fullscreen (fills entire laptop monitor)
         try {
           if (solarSystemStage.requestFullscreen) {
             await solarSystemStage.requestFullscreen();
@@ -1566,7 +1500,6 @@ document.addEventListener('DOMContentLoaded', () => {
           console.warn('Native fullscreen request note:', err);
         }
 
-        // 2. Add CSS class for stage layout
         solarSystemStage.classList.add('fullscreen-mode');
 
         if (solarFullscreenIcon) {
@@ -1576,7 +1509,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showToast(state.currentLang === 'ar' ? 'تم تفعيل ملء الشاشة الكامل للكمبيوتر 🚀' : 'True Fullscreen Enabled 🚀', 'info');
       } else {
-        // Exit True Fullscreen
         try {
           if (document.fullscreenElement && document.exitFullscreen) {
             await document.exitFullscreen();
@@ -1595,7 +1527,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(state.currentLang === 'ar' ? 'تم الخروج من ملء الشاشة' : 'Exited Fullscreen', 'info');
       }
 
-      // Resize 3D renderer smoothly to fill new monitor resolution
       setTimeout(() => {
         if (window.solarSystemController && window.solarSystemController.resize) {
           window.solarSystemController.resize();
@@ -1604,38 +1535,139 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Sync state if user exits via browser ESC or F11
-  document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement && solarSystemStage) {
-      solarSystemStage.classList.remove('fullscreen-mode');
-      if (solarFullscreenIcon) {
-        solarFullscreenIcon.setAttribute('data-lucide', 'maximize');
-        if (window.lucide) window.lucide.createIcons();
+  const outpostFullscreenBtn = document.getElementById('outpostFullscreenBtn');
+  const outpostFullscreenIcon = document.getElementById('outpostFullscreenIcon');
+
+  function updateOutpostFullscreenUI(isFs) {
+    const iconName = isFs ? 'minimize' : 'maximize';
+    if (outpostFullscreenIcon) {
+      outpostFullscreenIcon.setAttribute('data-lucide', iconName);
+    }
+    const issHudIcon = document.getElementById('issHudFullscreenIcon');
+    if (issHudIcon) {
+      issHudIcon.setAttribute('data-lucide', iconName);
+    }
+    const issHudText = document.getElementById('issHudFullscreenText');
+    if (issHudText) {
+      if (state.currentLang === 'ar') {
+        issHudText.textContent = isFs ? 'إنهاء ملء الشاشة' : 'ملء الشاشة';
+      } else if (state.currentLang === 'fr') {
+        issHudText.textContent = isFs ? 'Quitter' : 'Plein écran';
+      } else {
+        issHudText.textContent = isFs ? 'Exit Fullscreen' : 'Fullscreen';
       }
-      setTimeout(() => {
-        if (window.solarSystemController && window.solarSystemController.resize) {
-          window.solarSystemController.resize();
+    }
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  window.toggleOutpostFullscreen = async function () {
+    playSynthSound('click');
+    const stage = document.getElementById('outpostGamesStage');
+    if (!stage) return;
+
+    const isFs = document.fullscreenElement != null || stage.classList.contains('fullscreen-mode');
+
+    if (!isFs) {
+      try {
+        if (stage.requestFullscreen) {
+          await stage.requestFullscreen();
+        } else if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
         }
-      }, 100);
+      } catch (err) {
+        console.warn('Outpost fullscreen note:', err);
+      }
+      stage.classList.add('fullscreen-mode');
+      updateOutpostFullscreenUI(true);
+      showToast(state.currentLang === 'ar' ? 'تم تفعيل ملء الشاشة الكامل لمحطة ISS 🚀' : 'ISS Fullscreen Mode Enabled 🚀', 'info');
+    } else {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          await document.exitFullscreen();
+        }
+      } catch (err) {
+        console.warn('Exit outpost fullscreen note:', err);
+      }
+      stage.classList.remove('fullscreen-mode');
+      updateOutpostFullscreenUI(false);
+      showToast(state.currentLang === 'ar' ? 'تم الخروج من ملء الشاشة' : 'Exited Fullscreen', 'info');
+    }
+
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 120);
+  };
+
+  if (outpostFullscreenBtn) {
+    outpostFullscreenBtn.addEventListener('click', window.toggleOutpostFullscreen);
+  }
+
+  const teamLogoWrapper = document.getElementById('teamLogoWrapper');
+  if (teamLogoWrapper) {
+    teamLogoWrapper.addEventListener('click', (e) => {
+      e.stopPropagation();
+      teamLogoWrapper.classList.toggle('preview-open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!teamLogoWrapper.contains(e.target)) {
+        teamLogoWrapper.classList.remove('preview-open');
+      }
+    });
+  }
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      if (solarSystemStage && solarSystemStage.classList.contains('fullscreen-mode')) {
+        solarSystemStage.classList.remove('fullscreen-mode');
+        if (solarFullscreenIcon) {
+          solarFullscreenIcon.setAttribute('data-lucide', 'maximize');
+          if (window.lucide) window.lucide.createIcons();
+        }
+        setTimeout(() => {
+          if (window.solarSystemController && window.solarSystemController.resize) {
+            window.solarSystemController.resize();
+          }
+        }, 100);
+      }
+      const outpostStage = document.getElementById('outpostGamesStage');
+      if (outpostStage && outpostStage.classList.contains('fullscreen-mode')) {
+        outpostStage.classList.remove('fullscreen-mode');
+        updateOutpostFullscreenUI(false);
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 100);
+      }
     }
   });
 
-  // Also support Esc key fallback
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && solarSystemStage && solarSystemStage.classList.contains('fullscreen-mode')) {
-      if (document.fullscreenElement && document.exitFullscreen) {
-        document.exitFullscreen().catch(() => { });
-      }
-      solarSystemStage.classList.remove('fullscreen-mode');
-      if (solarFullscreenIcon) {
-        solarFullscreenIcon.setAttribute('data-lucide', 'maximize');
-        if (window.lucide) window.lucide.createIcons();
-      }
-      setTimeout(() => {
-        if (window.solarSystemController && window.solarSystemController.resize) {
-          window.solarSystemController.resize();
+    if (e.key === 'Escape') {
+      if (solarSystemStage && solarSystemStage.classList.contains('fullscreen-mode')) {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => { });
         }
-      }, 80);
+        solarSystemStage.classList.remove('fullscreen-mode');
+        if (solarFullscreenIcon) {
+          solarFullscreenIcon.setAttribute('data-lucide', 'maximize');
+          if (window.lucide) window.lucide.createIcons();
+        }
+        setTimeout(() => {
+          if (window.solarSystemController && window.solarSystemController.resize) {
+            window.solarSystemController.resize();
+          }
+        }, 80);
+      }
+      const outpostStage = document.getElementById('outpostGamesStage');
+      if (outpostStage && outpostStage.classList.contains('fullscreen-mode')) {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => { });
+        }
+        outpostStage.classList.remove('fullscreen-mode');
+        updateOutpostFullscreenUI(false);
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 80);
+      }
     }
   });
 
@@ -1702,7 +1734,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render dynamic Solar Selector Strip Pills
   function renderSolarPills() {
     const selectorStrip = document.getElementById('solarSelectorStrip');
     if (!selectorStrip) return;
@@ -1740,7 +1771,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Language-Specific Cinematic Launch Videos
   const LAUNCH_VIDEOS = {
     ar: 'https://videotourl.com/videos/1794735018749-df64713f-d0b9-400f-a77b-91301272c85f.mp4',
     en: 'https://videotourl.com/videos/1794734605967-887a56fb-f185-4fd0-bafd-7d9fe5c6f661.mp4',
@@ -1758,7 +1788,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Language Setter
   function setLanguage(lang) {
     if (!i18n[lang]) return;
     state.currentLang = lang;
@@ -1814,7 +1843,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabLabelAcademy) tabLabelAcademy.textContent = t.tabAcademy;
     if (returnBtnLabel) returnBtnLabel.textContent = t.returnLabel;
 
-    // Solar System localized texts
     const solarTitleText = document.getElementById('solarTitleText');
     if (solarTitleText && t.solarTitle) solarTitleText.textContent = t.solarTitle;
     const returnGalaxiesText = document.getElementById('returnGalaxiesText');
@@ -1836,7 +1864,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const hudResetOrbitText = document.getElementById('hudResetOrbitText');
     if (hudResetOrbitText && t.resetOrbitText) hudResetOrbitText.textContent = t.resetOrbitText;
 
-    // Outpost localized texts
     const navOutpostGamesText = document.getElementById('navOutpostGamesText');
     if (navOutpostGamesText && t.navOutpost) navOutpostGamesText.textContent = t.navOutpost;
     const returnOutpostText = document.getElementById('returnOutpostText');
@@ -1854,15 +1881,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const launchOutpostBtnText = document.getElementById('launchOutpostBtnText');
     if (launchOutpostBtnText && t.launchOutpostBtn) launchOutpostBtnText.textContent = t.launchOutpostBtn;
 
+    const secGalaxiesTitle = document.getElementById('secGalaxiesTitle');
+    if (secGalaxiesTitle && t.secGalaxiesTitle) secGalaxiesTitle.textContent = t.secGalaxiesTitle;
+    const secGalaxiesDesc = document.getElementById('secGalaxiesDesc');
+    if (secGalaxiesDesc && t.secGalaxiesDesc) secGalaxiesDesc.textContent = t.secGalaxiesDesc;
+
+    const nasaApiChipText = document.getElementById('nasaApiChipText');
+    if (nasaApiChipText && t.nasaApiChip) nasaApiChipText.textContent = t.nasaApiChip;
+    const nasaApiStatus = document.getElementById('nasaApiStatus');
+    if (nasaApiStatus && t.nasaApiStatus) nasaApiStatus.textContent = t.nasaApiStatus;
+    const nasaSearchInput = document.getElementById('nasaSearchInput');
+    if (nasaSearchInput && t.nasaSearchPlaceholder) nasaSearchInput.placeholder = t.nasaSearchPlaceholder;
+    const nasaSearchBtnText = document.getElementById('nasaSearchBtnText');
+    if (nasaSearchBtnText && t.nasaSearchBtn) nasaSearchBtnText.textContent = t.nasaSearchBtn;
+
     renderSolarPills();
     renderCosmicSectors();
     updateMuteButtonUI();
     updateLaunchVideoSource(lang);
   }
 
-  // ========================================================
-  // SESSION PERSISTENCE & RESTORATION (No Forced Redirects on Reload)
-  // ========================================================
   function checkExistingSession() {
     const existingUser = window.AstroDB.getCurrentUser();
     if (existingUser && existingUser.full_name) {
@@ -1876,17 +1914,14 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentUser = user;
     const t = i18n[state.currentLang];
 
-    // Update Session Chip in Top Navbar
     if (userSessionChip && sessionUserName) {
       sessionUserName.textContent = user.full_name;
       userSessionChip.style.display = 'flex';
     }
 
-    // Hide Login Screen, Show Dashboard
     registerSection.style.display = 'none';
     dashboardSection.classList.add('active');
 
-    // Video Persistence: If already watched, go straight to Galaxies Hub!
     const hasWatchedVideo = localStorage.getItem('ASTRO_VIDEO_WATCHED') === 'true';
     if (hasWatchedVideo) {
       if (gatewayCard) gatewayCard.style.display = 'none';
@@ -1896,7 +1931,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (explorationHub) explorationHub.style.display = 'none';
     }
 
-    // Trigger 3D Viewport Calibration & Welcome Wave
     setTimeout(() => {
       if (window.resizeAstro3D) window.resizeAstro3D();
       if (window.astro3DController) window.astro3DController.triggerWave();
@@ -1910,7 +1944,6 @@ document.addEventListener('DOMContentLoaded', () => {
       badgeCadetName.textContent = user.full_name;
     }
 
-    // Start Astor Greeting
     const welcomeSpeech = t.astroWelcomeMsg(user.full_name);
     startAstroTypewriter(welcomeSpeech);
 
@@ -1919,7 +1952,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Sign Out Handler
   signOutBtn.addEventListener('click', () => {
     playSynthSound('click');
     window.AstroDB.clearSession();
@@ -1933,7 +1965,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('تم تسجيل الخروج بنجاح 👋', 'info');
   });
 
-  // Apple iPhone Setup Hello Animation
   async function launchIphoneSetupSequence(user) {
     const t = i18n[state.currentLang];
     playSynthSound('whoosh');
@@ -1980,7 +2011,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 600);
   }
 
-  // Registration / Login Form Submission (Email + Display Name Composite Recognition)
   registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     playSynthSound('click');
@@ -2010,7 +2040,6 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.style.opacity = '0.7';
 
     try {
-      // Disambiguate user profile by composite key (email + fullName)
       const result = await window.AstroDB.registerAstroUser({
         fullName,
         age,
@@ -2039,7 +2068,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Toggle Password
   togglePasswordBtn.addEventListener('click', () => {
     playSynthSound('click');
     const isPassword = passwordInput.type === 'password';
@@ -2051,11 +2079,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ========================================================
-  // CINEMATIC MANDATORY LAUNCH VIDEO (UNSKIPPABLE, NO CONTROLS)
-  // ========================================================
   if (missionLaunchVideo) {
-    // Disable right click context menu on video & blocker
     missionLaunchVideo.addEventListener('contextmenu', (e) => e.preventDefault());
     if (videoOverlayBlocker) {
       videoOverlayBlocker.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -2069,7 +2093,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Disable keyboard shortcuts (Space, Arrow keys, K, J, L) during video playback
     window.addEventListener('keydown', (e) => {
       if (missionVideoStage && missionVideoStage.style.display !== 'none') {
         if (['Space', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyK', 'KeyJ', 'KeyL'].includes(e.code)) {
@@ -2079,7 +2102,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, true);
 
-    // Prevent any seeking / dragging / scrubbing
     let lastValidTime = 0;
     missionLaunchVideo.addEventListener('timeupdate', () => {
       if (missionLaunchVideo.currentTime > lastValidTime + 0.6) {
@@ -2089,7 +2111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Smooth transition from video to exploration hub
     const transitionToGalaxies = () => {
       playSynthSound('success');
       localStorage.setItem('ASTRO_VIDEO_WATCHED', 'true');
@@ -2117,7 +2138,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     };
 
-    // When the launch video finishes: smooth cosmic warp into Galaxies
     missionLaunchVideo.addEventListener('ended', transitionToGalaxies);
     missionLaunchVideo.addEventListener('error', (err) => {
       console.warn('Video playback note, proceeding to exploration hub:', err);
@@ -2133,7 +2153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Grand "ابدأ الآن" Start Button Execution
   startNowBtn.addEventListener('click', () => {
     playSynthSound('success');
     if (window.astro3DController) {
@@ -2144,7 +2163,6 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'Initiating cosmic launch sequence! Thrusters engaged!';
     triggerAstorInteraction(launchIntro);
 
-    // Smooth transition into Cinematic Launch Video
     if (gatewayStartView && missionVideoStage && missionLaunchVideo) {
       gatewayStartView.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
       gatewayStartView.style.opacity = '0';
@@ -2161,10 +2179,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const playPromise = missionLaunchVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // If browser policy blocks unmuted audio on auto-play, start cleanly
             missionLaunchVideo.muted = true;
             missionLaunchVideo.play().then(() => {
-              // Unmute gently
               setTimeout(() => { missionLaunchVideo.muted = false; }, 300);
             }).catch(e => {
               console.warn('Video playback error, auto-progressing:', e);
@@ -2179,13 +2195,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 400);
     } else {
-      // Fallback
       gatewayCard.style.display = 'none';
       explorationHub.style.display = 'flex';
     }
   });
 
-  // Return to Gateway Button
   if (returnGatewayBtn) {
     returnGatewayBtn.addEventListener('click', () => {
       playSynthSound('click');
@@ -2209,11 +2223,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // NASA IMAGES & VIDEO LIBRARY API INTEGRATION
-  // Official Docs: https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf
-  // Live Endpoint: https://images-api.nasa.gov/search?q={query}&media_type=image
-  // ========================================================
   const nasaApiCache = new Map();
 
   async function fetchNasaGalaxyData(query) {
@@ -2247,7 +2256,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
-  // Load NASA Images for the 4 Galaxy Cards (with custom high-res priority for Milky Way)
   async function loadNasaGalaxyImages() {
     const queries = {
       andromeda: 'andromeda galaxy',
@@ -2290,7 +2298,6 @@ document.addEventListener('DOMContentLoaded', () => {
       nasaModalLoader.innerHTML = '<span style="color:#ef4444;">تعذر تحميل الصورة عالية الدقة من خوادم ناسا</span>';
     };
 
-    // Astro explains the inspected item
     const summary = `${item.title} — رصد تلسكوب ناسا الرسمي!`;
     triggerAstorInteraction(summary);
   }
@@ -2309,7 +2316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // NASA Live Search Execution
   async function executeNasaSearch() {
     const q = (nasaSearchInput?.value || '').trim();
     if (!q) {
@@ -2327,7 +2333,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    // Auto-map common Arabic astronomy terms to NASA's English catalog
     const arabicToNasa = {
       'المريخ': 'Mars', 'مريخ': 'Mars',
       'القمر': 'Moon', 'قمر': 'Moon',
@@ -2386,7 +2391,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }).join('');
 
-      // Add click listener to search results
       nasaSearchResults.querySelectorAll('.nasa-result-card').forEach((card, idx) => {
         card.addEventListener('click', () => {
           const item = items[idx];
@@ -2426,7 +2430,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hub Sector Navigation Tabs (if present)
   if (hubTabButtons && hubTabButtons.length > 0) {
     hubTabButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -2450,7 +2453,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cadet Quiz Challenge Execution
   if (quizOptions) {
     quizOptions.addEventListener('click', (e) => {
       const btn = e.target.closest('.quiz-opt-btn');
@@ -2486,7 +2488,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Language & Theme Toggle Controls
   langButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       playSynthSound('click');
@@ -2507,7 +2508,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(state.soundEnabled ? 'المؤثرات الصوتية مفعّلة 🔊' : 'المؤثرات الصوتية مكتومة 🔇');
   });
 
-  // Supabase Modal Listeners (Safely guarded against removed UI buttons)
   if (supabaseConfigBtn && supabaseModal) {
     supabaseConfigBtn.addEventListener('click', () => {
       playSynthSound('click');
@@ -2564,17 +2564,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // ULTRA-IMMERSIVE DEEP SPACE UNIVERSE SIMULATION ENGINE
-  // Realistic Nebulas, Spiral Galaxies, Saturn with Rings,
-  // Azure Planet, Orbiting Satellite (ISS), Shooting Stars & Parallax
-  // ========================================================
   const canvas = document.getElementById('spaceCanvas');
   const ctx = canvas.getContext('2d');
   let w = window.innerWidth;
   let h = window.innerHeight;
 
-  // Parallax Coordinates (Smooth Inertia)
   let targetParallaxX = 0;
   let targetParallaxY = 0;
   let curParallaxX = 0;
@@ -2585,7 +2579,6 @@ document.addEventListener('DOMContentLoaded', () => {
     targetParallaxY = (e.clientY / window.innerHeight - 0.5) * 35;
   }, { passive: true });
 
-  // 1. Starfield Layers (3 Depths)
   let stars = [];
   function createStarfield() {
     stars = [];
@@ -2613,14 +2606,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 2. Cosmic Nebulas (Deep Gas Clouds)
   const nebulas = [
     { xRatio: 0.22, yRatio: 0.28, rRatio: 0.38, color1: 'rgba(99, 102, 241, 0.12)', color2: 'rgba(147, 51, 234, 0.06)', phase: 0 },
     { xRatio: 0.78, yRatio: 0.65, rRatio: 0.44, color1: 'rgba(0, 229, 255, 0.10)', color2: 'rgba(6, 182, 212, 0.04)', phase: 2.1 },
     { xRatio: 0.50, yRatio: 0.85, rRatio: 0.40, color1: 'rgba(236, 72, 153, 0.07)', color2: 'rgba(168, 85, 247, 0.03)', phase: 4.3 }
   ];
 
-  // 3. Distant Rotating Spiral Galaxy
   const spiralGalaxy = {
     xRatio: 0.18,
     yRatio: 0.22,
@@ -2652,7 +2643,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4. Photorealistic Ringed Saturn
   const saturn = {
     xRatio: 0.85,
     yRatio: 0.24,
@@ -2663,7 +2653,6 @@ document.addEventListener('DOMContentLoaded', () => {
     driftPhase: 0
   };
 
-  // 5. Azure Terrestrial / Ice Giant Planet
   const azurePlanet = {
     xRatio: 0.10,
     yRatio: 0.78,
@@ -2671,7 +2660,6 @@ document.addEventListener('DOMContentLoaded', () => {
     driftPhase: 1.5
   };
 
-  // 6. Realistic Orbital Satellite (ISS / NASA Space Craft)
   const satellite = {
     x: -80,
     y: 120,
@@ -2681,7 +2669,6 @@ document.addEventListener('DOMContentLoaded', () => {
     beaconTimer: 0
   };
 
-  // 7. Dynamic Shooting Stars (Meteors)
   let meteors = [];
   let nextMeteorTime = Date.now() + 2500;
 
@@ -2714,19 +2701,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Render Lens Flare 4-Point Star Spike
   function drawLensStar(cx, cy, r, alpha, color) {
     ctx.save();
     ctx.globalAlpha = alpha;
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
 
-    // Center Core
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
 
-    // 4-Point Diffraction Spikes
     const spikeLen = r * 5.5;
     ctx.lineWidth = 0.8;
     ctx.beginPath();
@@ -2736,7 +2720,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineTo(cx, cy + spikeLen);
     ctx.stroke();
 
-    // Soft Halo
     const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 4.5);
     halo.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
     halo.addColorStop(1, 'transparent');
@@ -2747,7 +2730,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
-  // Render Photorealistic Ringed Saturn with 3D Sphere & 2-Pass Rings
   function renderSaturn(cx, cy, time) {
     ctx.save();
     const bob = Math.sin(time * 0.0008 + saturn.driftPhase) * 6;
@@ -2758,27 +2740,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.translate(px, py);
     ctx.rotate(saturn.ringTilt);
 
-    // ── Pass 1: Back Half of Rings (behind planet) ──
     ctx.save();
     ctx.beginPath();
     ctx.rect(-saturn.ringOuterR * 1.5, -saturn.ringOuterR * 1.5, saturn.ringOuterR * 3, saturn.ringOuterR * 1.5);
     ctx.clip(); // Only top/back half
 
-    // Outer Ring
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR, saturn.ringOuterR * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(226, 198, 153, 0.55)';
     ctx.lineWidth = 14;
     ctx.stroke();
 
-    // Cassini Division
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR - 10, (saturn.ringOuterR - 10) * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(10, 14, 25, 0.9)';
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
-    // Inner Ring
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringInnerR + 6, (saturn.ringInnerR + 6) * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(245, 222, 179, 0.70)';
@@ -2788,17 +2766,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.rotate(-saturn.ringTilt); // un-rotate for planet sphere shading
 
-    // ── Planet Body (3D Spherical Sunlight & Cloud Stripes) ──
     ctx.save();
     ctx.beginPath();
     ctx.arc(0, 0, r, 0, Math.PI * 2);
     ctx.clip();
 
-    // Base Planet Color
     ctx.fillStyle = '#d4af37';
     ctx.fill();
 
-    // Atmospheric Band Stripes
     const bands = [
       { y: -22, h: 6, c: '#c89d58' },
       { y: -12, h: 8, c: '#e8c99b' },
@@ -2811,7 +2786,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillRect(-r, b.y, r * 2, b.h);
     });
 
-    // 3D Spherical Light Gradient (Sun from upper-left)
     const planetLight = ctx.createRadialGradient(-r * 0.45, -r * 0.45, 4, 0, 0, r * 1.15);
     planetLight.addColorStop(0, 'rgba(255, 250, 230, 0.40)');
     planetLight.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
@@ -2821,7 +2795,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.arc(0, 0, r, 0, Math.PI * 2);
     ctx.fill();
 
-    // Ring Shadow cast onto planet
     ctx.rotate(saturn.ringTilt);
     ctx.fillStyle = 'rgba(5, 8, 16, 0.65)';
     ctx.fillRect(-r, -3, r * 2, 7);
@@ -2829,28 +2802,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.restore(); // clip restored
 
-    // ── Pass 2: Front Half of Rings (in front of planet) ──
     ctx.rotate(saturn.ringTilt);
     ctx.save();
     ctx.beginPath();
     ctx.rect(-saturn.ringOuterR * 1.5, 0, saturn.ringOuterR * 3, saturn.ringOuterR * 1.5);
     ctx.clip(); // Only bottom/front half
 
-    // Outer Ring
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR, saturn.ringOuterR * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(226, 198, 153, 0.55)';
     ctx.lineWidth = 14;
     ctx.stroke();
 
-    // Cassini Division
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR - 10, (saturn.ringOuterR - 10) * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(10, 14, 25, 0.9)';
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
-    // Inner Ring
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringInnerR + 6, (saturn.ringInnerR + 6) * 0.28, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(245, 222, 179, 0.70)';
@@ -2861,7 +2830,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
-  // Render Azure Terrestrial / Ice Planet with Glowing Atmospheric Halo
   function renderAzurePlanet(cx, cy, time) {
     ctx.save();
     const bob = Math.cos(time * 0.0006 + azurePlanet.driftPhase) * 5;
@@ -2869,7 +2837,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const py = cy + bob;
     const r = azurePlanet.radius;
 
-    // Atmospheric Glowing Limb Halo
     const halo = ctx.createRadialGradient(px, py, r * 0.85, px, py, r * 1.45);
     halo.addColorStop(0, 'rgba(0, 229, 255, 0.38)');
     halo.addColorStop(0.6, 'rgba(56, 189, 248, 0.12)');
@@ -2879,7 +2846,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.arc(px, py, r * 1.45, 0, Math.PI * 2);
     ctx.fill();
 
-    // Planet Body
     ctx.save();
     ctx.beginPath();
     ctx.arc(px, py, r, 0, Math.PI * 2);
@@ -2888,7 +2854,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = '#0284c7';
     ctx.fill();
 
-    // Continents / Cloud swirls
     ctx.fillStyle = '#38bdf8';
     ctx.beginPath();
     ctx.ellipse(px - 5, py - 6, r * 0.6, r * 0.35, 0.4, 0, Math.PI * 2);
@@ -2899,7 +2864,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.ellipse(px + 8, py + 8, r * 0.5, r * 0.25, -0.3, 0, Math.PI * 2);
     ctx.fill();
 
-    // 3D Shadow Crescent
     const shadowGrad = ctx.createRadialGradient(px - r * 0.4, py - r * 0.4, 2, px, py, r * 1.15);
     shadowGrad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
     shadowGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
@@ -2913,13 +2877,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
-  // Render Rotating Spiral Galaxy
   function renderSpiralGalaxy(cx, cy) {
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(spiralGalaxy.angle);
 
-    // Core Radiant Glow
     const coreGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, spiralGalaxy.radius * 0.55);
     coreGrad.addColorStop(0, 'rgba(255, 250, 235, 0.95)');
     coreGrad.addColorStop(0.2, 'rgba(254, 215, 170, 0.65)');
@@ -2930,7 +2892,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.arc(0, 0, spiralGalaxy.radius * 0.55, 0, Math.PI * 2);
     ctx.fill();
 
-    // Stardust Spiral Arms
     for (let i = 0; i < spiralGalaxy.armParticles.length; i++) {
       const p = spiralGalaxy.armParticles[i];
       const a = p.angleOffset;
@@ -2946,27 +2907,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
-  // Render Orbiting Vector Satellite (ISS style spacecraft)
   function renderSatellite(now) {
     ctx.save();
     ctx.translate(satellite.x, satellite.y);
     ctx.rotate(satellite.angle);
 
-    // Left Solar Panel Array
     ctx.fillStyle = '#0284c7';
     ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 1;
     ctx.fillRect(-38, -8, 22, 16);
     ctx.strokeRect(-38, -8, 22, 16);
 
-    // Solar Panel Grid Lines
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
     ctx.beginPath();
     ctx.moveTo(-27, -8); ctx.lineTo(-27, 8);
     ctx.moveTo(-38, 0); ctx.lineTo(-16, 0);
     ctx.stroke();
 
-    // Right Solar Panel Array
     ctx.fillStyle = '#0284c7';
     ctx.strokeStyle = '#e2e8f0';
     ctx.fillRect(16, -8, 22, 16);
@@ -2978,7 +2935,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.moveTo(16, 0); ctx.lineTo(38, 0);
     ctx.stroke();
 
-    // Connecting Trusses
     ctx.strokeStyle = '#94a3b8';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -2986,7 +2942,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.moveTo(8, 0); ctx.lineTo(16, 0);
     ctx.stroke();
 
-    // Central Satellite Bus Capsule
     const busGrad = ctx.createLinearGradient(-8, -6, 8, 6);
     busGrad.addColorStop(0, '#f8fafc');
     busGrad.addColorStop(0.5, '#cbd5e1');
@@ -2994,14 +2949,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = busGrad;
     ctx.fillRect(-8, -6, 16, 12);
 
-    // Dish Antenna
     ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.arc(0, -9, 5, 0.2, Math.PI - 0.2);
     ctx.stroke();
 
-    // Flashing Strobe Beacon Light
     const isStrobeOn = Math.sin(now * 0.005) > 0.6;
     if (isStrobeOn) {
       ctx.fillStyle = '#ef4444';
@@ -3018,7 +2971,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
-  // Render Shooting Stars (Meteors)
   function renderMeteors() {
     for (let i = meteors.length - 1; i >= 0; i--) {
       const m = meteors[i];
@@ -3046,7 +2998,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.lineTo(tailX, tailY);
       ctx.stroke();
 
-      // Glowing Head
       ctx.fillStyle = `rgba(255, 255, 255, ${m.alpha})`;
       ctx.beginPath();
       ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2);
@@ -3055,15 +3006,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Master Cosmic Universe Render Loop
   function renderUniverse(now) {
-    // Parallax Interpolation
     curParallaxX += (targetParallaxX - curParallaxX) * 0.045;
     curParallaxY += (targetParallaxY - curParallaxY) * 0.045;
 
     ctx.clearRect(0, 0, w, h);
 
-    // ── A. Cosmic Nebulas ──
     for (let i = 0; i < nebulas.length; i++) {
       const neb = nebulas[i];
       const nebX = (w * neb.xRatio) + (curParallaxX * 0.2);
@@ -3081,23 +3029,19 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fill();
     }
 
-    // ── B. Rotating Spiral Galaxy ──
     spiralGalaxy.angle += spiralGalaxy.rotSpeed;
     const galX = (w * spiralGalaxy.xRatio) + (curParallaxX * 0.35);
     const galY = (h * spiralGalaxy.yRatio) + (curParallaxY * 0.35);
     renderSpiralGalaxy(galX, galY);
 
-    // ── C. Ringed Saturn ──
     const saturnX = (w * saturn.xRatio) + (curParallaxX * 0.55);
     const saturnY = (h * saturn.yRatio) + (curParallaxY * 0.55);
     renderSaturn(saturnX, saturnY, now);
 
-    // ── D. Azure Terrestrial Planet ──
     const azPlanetX = (w * azurePlanet.xRatio) + (curParallaxX * 0.45);
     const azPlanetY = (h * azurePlanet.yRatio) + (curParallaxY * 0.45);
     renderAzurePlanet(azPlanetX, azPlanetY, now);
 
-    // ── E. Starfield with Twinkle & Diffraction Spikes ──
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       s.x += s.speedX;
@@ -3125,7 +3069,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     ctx.globalAlpha = 1.0;
 
-    // ── F. Orbiting Satellite ──
     satellite.x += satellite.speedX;
     satellite.y += satellite.speedY;
     if (satellite.x > w + 120 || satellite.y > h + 120) {
@@ -3134,7 +3077,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderSatellite(now);
 
-    // ── G. Shooting Stars Manager ──
     if (Date.now() > nextMeteorTime) {
       spawnMeteor();
     }
@@ -3147,7 +3089,6 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeCanvas();
   requestAnimationFrame(renderUniverse);
 
-  // Initialize System
   window.AstroDB.initSupabaseClient();
   const initLang = state.currentUser ? (state.currentUser.preferred_language || 'ar') : (localStorage.getItem('ASTRO_LANG') || 'ar');
   setLanguage(initLang);

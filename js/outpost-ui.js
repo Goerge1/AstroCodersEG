@@ -14,6 +14,8 @@ const I18N = {
     missionTimeout: "انتهى وقت مناوبة المحطة المدارية!",
     finalScore: "النقاط الإجمالية",
     highScore: "أعلى رقم قياسي",
+    fullscreen: "ملء الشاشة",
+    fullscreenTitle: "ملء الشاشة بالكامل",
     factsTitle: "علوم ناسا وتقنيات الفضاء المكتسبة:",
     restartBtn: "مهمة جديدة",
     returnBtn: "العودة للاستكشاف",
@@ -93,6 +95,8 @@ const I18N = {
     missionTimeout: "Station Shift Time Expired!",
     finalScore: "Total Score",
     highScore: "High Score",
+    fullscreen: "Fullscreen",
+    fullscreenTitle: "Toggle Fullscreen",
     factsTitle: "Mastered NASA Space Sciences:",
     restartBtn: "New Mission",
     returnBtn: "Return to Orbit",
@@ -172,6 +176,8 @@ const I18N = {
     missionTimeout: "Fin du Quart Orbital !",
     finalScore: "Score Total",
     highScore: "Meilleur Score",
+    fullscreen: "Plein écran",
+    fullscreenTitle: "Basculer en plein écran",
     factsTitle: "Sciences Spatiales NASA Acquises :",
     restartBtn: "Nouvelle Mission",
     returnBtn: "Retour aux Galaxies",
@@ -403,15 +409,19 @@ export function mountOutpostGames(mountElement, lang = 'ar', onSpeak = null) {
     <div class="iss-header-group">
       <div class="iss-top-hud">
         <div class="iss-stat-pill time-pill">
-          <span class="pill-icon">⏱️</span>
+          <span class="pill-icon"><i data-lucide="clock" style="width: 14px; height: 14px;"></i></span>
           <span class="pill-label">${t.timeRemaining}:</span>
           <strong id="issTimerDisplay">3:00</strong>
         </div>
         <div class="iss-stat-pill score-pill">
-          <span class="pill-icon">⭐</span>
+          <span class="pill-icon"><i data-lucide="star" style="width: 14px; height: 14px;"></i></span>
           <span class="pill-label">${t.score}:</span>
           <strong id="issScoreDisplay">0</strong>
         </div>
+        <button type="button" class="iss-stat-pill fullscreen-pill" id="issHudFullscreenBtn" title="${t.fullscreenTitle}">
+          <span class="pill-icon"><i data-lucide="maximize" id="issHudFullscreenIcon" style="width: 14px; height: 14px;"></i></span>
+          <span id="issHudFullscreenText">${t.fullscreen}</span>
+        </button>
         <div class="iss-station-tag">
           <span class="station-pulse-dot"></span>
           <span>${t.stationTitle}</span>
@@ -420,21 +430,21 @@ export function mountOutpostGames(mountElement, lang = 'ar', onSpeak = null) {
 
       <div class="iss-vitals-row">
         <div class="iss-vital-item o2-vital" title="${t.vitalOxygen}">
-          <span>🫧 ${t.vitalOxygen}</span>
+          <span><i data-lucide="wind" style="width: 14px; height: 14px; vertical-align: middle;"></i> ${t.vitalOxygen}</span>
           <div class="iss-vital-bar-track">
             <div class="iss-vital-bar-fill" id="vitalFillO2" style="width: 100%;"></div>
           </div>
           <span id="vitalValO2">100%</span>
         </div>
         <div class="iss-vital-item power-vital" title="${t.vitalPower}">
-          <span>⚡ ${t.vitalPower}</span>
+          <span><i data-lucide="zap" style="width: 14px; height: 14px; vertical-align: middle;"></i> ${t.vitalPower}</span>
           <div class="iss-vital-bar-track">
             <div class="iss-vital-bar-fill" id="vitalFillPower" style="width: 100%;"></div>
           </div>
           <span id="vitalValPower">100%</span>
         </div>
         <div class="iss-vital-item hull-vital" title="${t.vitalHull}">
-          <span>🛡️ ${t.vitalHull}</span>
+          <span><i data-lucide="shield" style="width: 14px; height: 14px; vertical-align: middle;"></i> ${t.vitalHull}</span>
           <div class="iss-vital-bar-track">
             <div class="iss-vital-bar-fill" id="vitalFillHull" style="width: 100%;"></div>
           </div>
@@ -497,6 +507,23 @@ export function mountOutpostGames(mountElement, lang = 'ar', onSpeak = null) {
   const actionButton = stageWrap.querySelector('#issActionButton');
   const joystickBase = stageWrap.querySelector('#joystickBase');
   const joystickStick = stageWrap.querySelector('#joystickStick');
+  if (joystickStick) {
+    joystickStick.style.transform = 'translate(0px, 0px)';
+  }
+
+  const issHudFullscreenBtn = stageWrap.querySelector('#issHudFullscreenBtn');
+  if (issHudFullscreenBtn) {
+    issHudFullscreenBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (typeof window.toggleOutpostFullscreen === 'function') {
+        window.toggleOutpostFullscreen();
+      } else {
+        const stage = document.getElementById('outpostGamesStage');
+        if (stage) stage.classList.toggle('fullscreen-mode');
+        setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 100);
+      }
+    });
+  }
 
   const vitalFillO2 = stageWrap.querySelector('#vitalFillO2');
   const vitalValO2 = stageWrap.querySelector('#vitalValO2');
@@ -1037,7 +1064,7 @@ export function mountOutpostGames(mountElement, lang = 'ar', onSpeak = null) {
     isJoystickActive = false;
     joystickVector = { x: 0, y: 0 };
     if (joystickStick) {
-      joystickStick.style.transform = `translate(-50%, -50%)`;
+      joystickStick.style.transform = 'translate(0px, 0px)';
     }
   }
   function updateJoystickPosition(clientX, clientY) {
@@ -1054,7 +1081,7 @@ export function mountOutpostGames(mountElement, lang = 'ar', onSpeak = null) {
       dy = (dy / dist) * maxRadius;
     }
     if (joystickStick) {
-      joystickStick.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+      joystickStick.style.transform = `translate(${dx}px, ${dy}px)`;
     }
     joystickVector.x = dx / maxRadius;
     joystickVector.y = dy / maxRadius;
