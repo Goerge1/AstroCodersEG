@@ -84,7 +84,34 @@ document.addEventListener('DOMContentLoaded', () => {
       nasaApiChip: 'NASA Live API • أرشيف ناسا الفضائي المفتوح',
       nasaApiStatus: 'متصل ومحدث مباشرة من ناسا',
       nasaSearchPlaceholder: 'ابحث في تلسكوبات ناسا (مثال: James Webb, Hubble, Nebula, Black Hole)...',
-      nasaSearchBtn: 'بحث كوني'
+      nasaSearchBtn: 'بحث كوني',
+      videoStatusTag: 'رحلة الانطلاق الكونية المباشرة • وكالة ناسا',
+      skipVideoText: 'تخطي',
+      skipVideoTitle: 'تخطي فيديو الانطلاق والدخول للمجرات',
+      videoFooterText: 'الانطلاق جاري عبر الزمكان الكوني... استعد لبلوغ أعماق المجرات',
+      videoBlockerTitle: 'فيديو انطلاق رحلة الفضاء',
+      navOutpostTitle: 'مهمة محطة الفضاء الدولية',
+      soundToggleTitle: 'المؤثرات الصوتية',
+      signOutTitle: 'تسجيل الخروج',
+      astorVisualTitle: 'انقر للتفاعل مع المساعد أسترو',
+      astorDialogueTitle: 'صندوق حوار أسترو',
+      muteAstorTitle: 'كتم / تشغيل صوت أسترو',
+      startNowAria: 'ابدأ الآن',
+      returnToGalaxiesTitle: 'العودة إلى المجرات',
+      solarFullscreenTitle: 'ملء الشاشة بالكامل',
+      solarPauseMotionTitle: 'إيقاف / تشغيل الحركة',
+      closePlanetHUDTitle: 'إغلاق والعودة للمدارات',
+      returnFromOutpostTitle: 'العودة للاستكشاف',
+      outpostFullscreenTitle: 'ملء الشاشة',
+      outpostScienceDocTitle: 'توثيق علوم ناسا الحقيقية',
+      closeNasaModalTitle: 'إغلاق',
+      nasaModalDefaultTitle: 'بيانات تلسكوب ناسا الرسمي',
+      nasaModalLoader: 'جاري تحميل الصورة فائقة الدقة من خوادم ناسا...',
+      iphoneHello: 'مرحباً',
+      iphoneHint: 'مرحباً بك في أسترو وورلد',
+      docTitle: 'أسترو وورلد | Astro World - NASA',
+      launchIntro: 'استعد لبدء رحلة الانطلاق الكونية! تم تشغيل محركات الصاروخ الفضائي!',
+      arrivalMsg: 'انطلاق ناجح في أعماق الكون! مرحباً بك في بوابة استكشاف المجرات الكونية العميقة مع بيانات ناسا الحية!'
     },
     en: {
       dir: 'ltr',
@@ -147,7 +174,34 @@ document.addEventListener('DOMContentLoaded', () => {
       nasaApiChip: 'NASA Live API • Open NASA Space Archive',
       nasaApiStatus: 'Connected & Updated Live from NASA',
       nasaSearchPlaceholder: 'Search NASA Telescopes (e.g., James Webb, Hubble, Nebula, Black Hole)...',
-      nasaSearchBtn: 'Cosmic Search'
+      nasaSearchBtn: 'Cosmic Search',
+      videoStatusTag: 'Live Cosmic Launch Mission • NASA',
+      skipVideoText: 'Skip',
+      skipVideoTitle: 'Skip launch video and enter galaxies hub',
+      videoFooterText: 'Traversing cosmic spacetime... Prepare to reach deep galaxies',
+      videoBlockerTitle: 'Space launch journey video',
+      navOutpostTitle: 'International Space Station Mission',
+      soundToggleTitle: 'Sound Effects',
+      signOutTitle: 'Sign Out',
+      astorVisualTitle: 'Click to interact with Astro',
+      astorDialogueTitle: 'Astro Dialogue Box',
+      muteAstorTitle: 'Mute / Unmute Astro Voice',
+      startNowAria: 'Start Now',
+      returnToGalaxiesTitle: 'Return to Galaxies',
+      solarFullscreenTitle: 'Toggle Fullscreen',
+      solarPauseMotionTitle: 'Pause / Resume Motion',
+      closePlanetHUDTitle: 'Close and return to orbits',
+      returnFromOutpostTitle: 'Return to Exploration',
+      outpostFullscreenTitle: 'Toggle Fullscreen',
+      outpostScienceDocTitle: 'Real NASA Science Documentation',
+      closeNasaModalTitle: 'Close',
+      nasaModalDefaultTitle: 'Official NASA Telescope Data',
+      nasaModalLoader: 'Loading high-resolution capture from NASA servers...',
+      iphoneHello: 'Hello',
+      iphoneHint: 'Welcome to Astro World',
+      docTitle: 'Astro World | NASA Space Exploration',
+      launchIntro: 'Initiating cosmic launch sequence! Thrusters engaged!',
+      arrivalMsg: 'Successful launch into deep cosmos! Welcome to the Deep Cosmic Galaxies Exploration hub with live NASA data!'
     },
     fr: {
       dir: 'ltr',
@@ -210,7 +264,34 @@ document.addEventListener('DOMContentLoaded', () => {
       nasaApiChip: 'NASA Live API • Archives Spatiales Ouvertes de la NASA',
       nasaApiStatus: 'Connecté et mis à jour en direct depuis la NASA',
       nasaSearchPlaceholder: 'Rechercher dans les télescopes de la NASA (ex: James Webb, Hubble, Nébuleuse)...',
-      nasaSearchBtn: 'Recherche Cosmique'
+      nasaSearchBtn: 'Recherche Cosmique',
+      videoStatusTag: 'Mission de Lancement Cosmique en Direct • NASA',
+      skipVideoText: 'Passer',
+      skipVideoTitle: 'Passer la vidéo de lancement et accéder aux galaxies',
+      videoFooterText: 'Traversée de l\'espace-temps cosmique... Préparez-vous à atteindre les galaxies profondes',
+      videoBlockerTitle: 'Vidéo de lancement du voyage spatial',
+      navOutpostTitle: 'Mission de la Station Spatiale Internationale',
+      soundToggleTitle: 'Effets Sonores',
+      signOutTitle: 'Se Déconnecter',
+      astorVisualTitle: 'Cliquez pour interagir avec Astro',
+      astorDialogueTitle: 'Boîte de dialogue Astro',
+      muteAstorTitle: 'Couper / Activer la voix d\'Astro',
+      startNowAria: 'Commencer Maintenant',
+      returnToGalaxiesTitle: 'Retour aux Galaxies',
+      solarFullscreenTitle: 'Basculer en Plein Écran',
+      solarPauseMotionTitle: 'Pause / Reprendre le Mouvement',
+      closePlanetHUDTitle: 'Fermer et retourner aux orbites',
+      returnFromOutpostTitle: 'Retour à l\'Exploration',
+      outpostFullscreenTitle: 'Basculer en Plein Écran',
+      outpostScienceDocTitle: 'Documentation Scientifique Réelle de la NASA',
+      closeNasaModalTitle: 'Fermer',
+      nasaModalDefaultTitle: 'Données Officielles des Télescopes de la NASA',
+      nasaModalLoader: 'Chargement de l\'image haute résolution depuis les serveurs de la NASA...',
+      iphoneHello: 'Bonjour',
+      iphoneHint: 'Bienvenue sur Astro World',
+      docTitle: 'Astro World | Exploration Spatiale NASA',
+      launchIntro: 'Initialisation de la séquence de lancement cosmique ! Propulseurs allumés !',
+      arrivalMsg: 'Lancement réussi dans les profondeurs cosmiques ! Bienvenue sur le portail d\'exploration des galaxies avec données en direct de la NASA !'
     }
   };
 
@@ -221,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: { ar: 'درب التبانة', en: 'Milky Way Galaxy', fr: 'Voie Lactée' },
         type: { ar: 'مجرة حلزونية قضيبية', en: 'Barred Spiral Galaxy', fr: 'Galaxie spirale barrée' },
         defaultImg: 'https://images-assets.nasa.gov/image/PIA10748/PIA10748~medium.jpg',
-        locked: false, // Unlocked home galaxy
+        locked: false,
         desc: {
           ar: 'موطن شمسنا وأرضنا، يبلغ قطرها 100,000 سنة ضوئية وتحوي أكثر من 200 مليار نجم، وفي قلبها يتربع الثقب الأسود الرامي A*.',
           en: 'Home to our solar system, spans 100,000 light-years with over 200 billion stars and a supermassive black hole Sagittarius A*.',
@@ -235,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: { ar: 'مجرة أندروميدا', en: 'Andromeda Galaxy (M31)', fr: 'Galaxie d\'Andromède' },
         type: { ar: 'حلزونية عملاقة', en: 'Giant Spiral', fr: 'Spirale géante' },
         defaultImg: 'https://images-assets.nasa.gov/image/PIA04921/PIA04921~medium.jpg',
-        locked: true, // Locked
+        locked: true,
         desc: {
           ar: 'أقرب مجرة كبرى لدرب التبانة، تبعد عنا 2.5 مليون سنة ضوئية، وتقترب نحونا بسرعة 110 كم/ثانية للاندماج بعد 4.5 مليار عام.',
           en: 'Our largest cosmic neighbor, 2.5 million light-years away, containing roughly one trillion stars on a collision course with us.',
@@ -249,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: { ar: 'مجرة الدوامة', en: 'Whirlpool Galaxy (M51)', fr: 'Galaxie du Tourbillon' },
         type: { ar: 'حلزونية تصميمية نموذجية', en: 'Grand Design Spiral', fr: 'Spirale de grand style' },
         defaultImg: 'https://images-assets.nasa.gov/image/PIA04230/PIA04230~medium.jpg',
-        locked: true, // Locked
+        locked: true,
         desc: {
           ar: 'تشتهر بأذرعها الحلزونية المضيئة والمثالية وتفاعلها الجذبي الملحمي مع المجرة القزمة المرافقة NGC 5195.',
           en: 'Famous for its picturesque spiral arms and dynamic gravitational interaction with its companion dwarf galaxy NGC 5195.',
@@ -263,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: { ar: 'مجرة سومبريرو', en: 'Sombrero Galaxy (M104)', fr: 'Galaxie du Sombrero' },
         type: { ar: 'حلزونية بقرص غباري كثيف', en: 'Spiral with Dust Lane', fr: 'Galaxie spirale à disque' },
         defaultImg: 'https://images-assets.nasa.gov/image/PIA15426/PIA15426~medium.jpg',
-        locked: true, // Locked
+        locked: true,
         desc: {
           ar: 'تتميز بانتفاخ مركزي أبيض ساطع وطوق غباري داكن متماسك يمنحها مظهر القبعة المكسيكية الشهيرة.',
           en: 'Distinguished by a brilliant white nucleus and a prominent dark dust lane resembling a traditional Mexican hat.',
@@ -1603,9 +1684,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const teamLogoWrapper = document.getElementById('teamLogoWrapper');
+  const teamLogoPreviewCard = document.getElementById('teamLogoPreviewCard');
+  const teamLogoPreviewArrow = document.getElementById('teamLogoPreviewArrow');
+
+  function positionTeamLogoPreview() {
+    if (!teamLogoWrapper || !teamLogoPreviewCard) return;
+    const wrapRect = teamLogoWrapper.getBoundingClientRect();
+    const cardWidth = teamLogoPreviewCard.offsetWidth || 250;
+    const badgeCenterX = wrapRect.left + wrapRect.width / 2;
+
+    const minLeft = 14;
+    const maxLeft = window.innerWidth - cardWidth - 14;
+    const idealLeft = badgeCenterX - cardWidth / 2;
+    const clampedLeft = Math.max(minLeft, Math.min(idealLeft, maxLeft));
+
+    const offsetInWrapper = clampedLeft - wrapRect.left;
+    teamLogoPreviewCard.style.marginLeft = '0px';
+    teamLogoPreviewCard.style.left = `${offsetInWrapper}px`;
+    teamLogoPreviewCard.style.right = 'auto';
+
+    if (teamLogoPreviewArrow) {
+      const arrowX = Math.max(20, Math.min(cardWidth - 20, badgeCenterX - clampedLeft));
+      teamLogoPreviewArrow.style.marginLeft = '0px';
+      teamLogoPreviewArrow.style.left = `${arrowX}px`;
+    }
+  }
+
   if (teamLogoWrapper) {
+    teamLogoWrapper.addEventListener('mouseenter', positionTeamLogoPreview);
+    teamLogoWrapper.addEventListener('focusin', positionTeamLogoPreview);
+    window.addEventListener('resize', positionTeamLogoPreview);
+
     teamLogoWrapper.addEventListener('click', (e) => {
       e.stopPropagation();
+      positionTeamLogoPreview();
       teamLogoWrapper.classList.toggle('preview-open');
     });
     document.addEventListener('click', (e) => {
@@ -1895,6 +2007,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const nasaSearchBtnText = document.getElementById('nasaSearchBtnText');
     if (nasaSearchBtnText && t.nasaSearchBtn) nasaSearchBtnText.textContent = t.nasaSearchBtn;
 
+    if (t.docTitle) document.title = t.docTitle;
+
+    const videoStatusTag = document.getElementById('videoStatusTag');
+    if (videoStatusTag && t.videoStatusTag) videoStatusTag.textContent = t.videoStatusTag;
+    const skipVideoText = document.getElementById('skipVideoText');
+    if (skipVideoText && t.skipVideoText) skipVideoText.textContent = t.skipVideoText;
+    const skipVideoBtn = document.getElementById('skipVideoBtn');
+    if (skipVideoBtn && t.skipVideoTitle) skipVideoBtn.title = t.skipVideoTitle;
+    const videoFooterText = document.getElementById('videoFooterText');
+    if (videoFooterText && t.videoFooterText) videoFooterText.textContent = t.videoFooterText;
+    const videoOverlayBlocker = document.getElementById('videoOverlayBlocker');
+    if (videoOverlayBlocker && t.videoBlockerTitle) videoOverlayBlocker.title = t.videoBlockerTitle;
+
+    const navOutpostGamesBtn = document.getElementById('navOutpostGamesBtn');
+    if (navOutpostGamesBtn && t.navOutpostTitle) navOutpostGamesBtn.title = t.navOutpostTitle;
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    if (soundToggleBtn && t.soundToggleTitle) soundToggleBtn.title = t.soundToggleTitle;
+    const signOutBtn = document.getElementById('signOutBtn');
+    if (signOutBtn && t.signOutTitle) signOutBtn.title = t.signOutTitle;
+    const astorVisualStage = document.getElementById('astorVisualStage');
+    if (astorVisualStage && t.astorVisualTitle) astorVisualStage.title = t.astorVisualTitle;
+    const astorDialogueBox = document.getElementById('astorDialogueBox');
+    if (astorDialogueBox && t.astorDialogueTitle) astorDialogueBox.title = t.astorDialogueTitle;
+    const muteAstorBtn = document.getElementById('muteAstorBtn');
+    if (muteAstorBtn && t.muteAstorTitle) muteAstorBtn.title = t.muteAstorTitle;
+    const startNowBtn = document.getElementById('startNowBtn');
+    if (startNowBtn && t.startNowAria) startNowBtn.setAttribute('aria-label', t.startNowAria);
+
+    const returnToGalaxiesBtn = document.getElementById('returnToGalaxiesBtn');
+    if (returnToGalaxiesBtn && t.returnToGalaxiesTitle) returnToGalaxiesBtn.title = t.returnToGalaxiesTitle;
+    const solarFullscreenBtn = document.getElementById('solarFullscreenBtn');
+    if (solarFullscreenBtn && t.solarFullscreenTitle) solarFullscreenBtn.title = t.solarFullscreenTitle;
+    const solarPauseMotionBtn = document.getElementById('solarPauseMotionBtn');
+    if (solarPauseMotionBtn && t.solarPauseMotionTitle) solarPauseMotionBtn.title = t.solarPauseMotionTitle;
+    const closePlanetHUDBtn = document.getElementById('closePlanetHUDBtn');
+    if (closePlanetHUDBtn && t.closePlanetHUDTitle) closePlanetHUDBtn.title = t.closePlanetHUDTitle;
+
+    const returnFromOutpostBtn = document.getElementById('returnFromOutpostBtn');
+    if (returnFromOutpostBtn && t.returnFromOutpostTitle) returnFromOutpostBtn.title = t.returnFromOutpostTitle;
+    const outpostFullscreenBtn = document.getElementById('outpostFullscreenBtn');
+    if (outpostFullscreenBtn && t.outpostFullscreenTitle) outpostFullscreenBtn.title = t.outpostFullscreenTitle;
+    const outpostScienceDoc = document.querySelector('a[href="./science.html"]');
+    if (outpostScienceDoc && t.outpostScienceDocTitle) outpostScienceDoc.title = t.outpostScienceDocTitle;
+
+    const closeNasaModalBtn = document.getElementById('closeNasaModalBtn');
+    if (closeNasaModalBtn && t.closeNasaModalTitle) closeNasaModalBtn.title = t.closeNasaModalTitle;
+    const nasaModalTitle = document.getElementById('nasaModalTitle');
+    if (nasaModalTitle && t.nasaModalDefaultTitle && !nasaModalTitle.dataset.custom) nasaModalTitle.textContent = t.nasaModalDefaultTitle;
+    const nasaModalLoaderText = document.getElementById('nasaModalLoaderText');
+    if (nasaModalLoaderText && t.nasaModalLoader) nasaModalLoaderText.textContent = t.nasaModalLoader;
+
+    const iphoneHelloText = document.getElementById('iphoneHelloText');
+    if (iphoneHelloText && t.iphoneHello) iphoneHelloText.textContent = t.iphoneHello;
+    const iphoneHintText = document.getElementById('iphoneHintText');
+    if (iphoneHintText && t.iphoneHint) iphoneHintText.textContent = t.iphoneHint;
+
+    const activePill = document.querySelector('.celestial-pill.active');
+    if (activePill && activePill.dataset.body) {
+      updatePlanetHUD(activePill.dataset.body);
+    }
+
     renderSolarPills();
     renderCosmicSectors();
     updateMuteButtonUI();
@@ -2128,9 +2301,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gatewayCard) gatewayCard.style.display = 'none';
         if (explorationHub) explorationHub.style.display = 'flex';
 
-        const welcomeMsg = state.currentLang === 'ar'
+        const curI18n = i18n[state.currentLang] || i18n.ar;
+        const welcomeMsg = curI18n.arrivalMsg || (state.currentLang === 'ar'
           ? 'انطلاق ناجح في أعماق الكون! مرحباً بك في بوابة استكشاف المجرات الكونية العميقة مع بيانات ناسا الحية!'
-          : 'Launch sequence completed! Welcome to deep cosmic galaxies with live NASA archives!';
+          : state.currentLang === 'fr'
+          ? 'Lancement réussi dans les profondeurs cosmiques ! Bienvenue sur le portail d\'exploration des galaxies avec données en direct de la NASA !'
+          : 'Successful launch into deep cosmos! Welcome to the Deep Cosmic Galaxies Exploration hub with live NASA data!');
         triggerAstorInteraction(welcomeMsg);
         if (window.astro3DController) {
           window.astro3DController.triggerWave();
@@ -2158,9 +2334,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.astro3DController) {
       window.astro3DController.pointAtCard();
     }
-    const launchIntro = state.currentLang === 'ar'
+    const curT = i18n[state.currentLang] || i18n.ar;
+    const launchIntro = curT.launchIntro || (state.currentLang === 'ar'
       ? 'استعد لبدء رحلة الانطلاق الكونية! تم تشغيل محركات الصاروخ الفضائي!'
-      : 'Initiating cosmic launch sequence! Thrusters engaged!';
+      : state.currentLang === 'fr'
+      ? 'Initialisation de la séquence de lancement cosmique ! Propulseurs allumés !'
+      : 'Initiating cosmic launch sequence! Thrusters engaged!');
     triggerAstorInteraction(launchIntro);
 
     if (gatewayStartView && missionVideoStage && missionLaunchVideo) {
@@ -2600,8 +2779,8 @@ document.addEventListener('DOMContentLoaded', () => {
         twinkleSpeed: Math.random() * 0.025 + 0.008,
         twinklePhase: Math.random() * Math.PI * 2,
         color: starColors[Math.floor(Math.random() * starColors.length)],
-        depth: depth, // 0 = far, 1 = near
-        hasSpikes: depth > 0.94 // bright landmark star with 4-point cross diffraction
+        depth: depth,
+        hasSpikes: depth > 0.94
       });
     }
   }
@@ -2677,7 +2856,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startY = Math.random() * (h * 0.4);
     const length = Math.random() * 120 + 80;
     const speed = Math.random() * 10 + 12;
-    const angle = 0.62 + (Math.random() - 0.5) * 0.18; // ~35 deg downward
+    const angle = 0.62 + (Math.random() - 0.5) * 0.18;
     meteors.push({
       x: startX,
       y: startY,
@@ -2743,7 +2922,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.save();
     ctx.beginPath();
     ctx.rect(-saturn.ringOuterR * 1.5, -saturn.ringOuterR * 1.5, saturn.ringOuterR * 3, saturn.ringOuterR * 1.5);
-    ctx.clip(); // Only top/back half
+    ctx.clip();
 
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR, saturn.ringOuterR * 0.28, 0, 0, Math.PI * 2);
@@ -2764,7 +2943,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
     ctx.restore();
 
-    ctx.rotate(-saturn.ringTilt); // un-rotate for planet sphere shading
+    ctx.rotate(-saturn.ringTilt);
 
     ctx.save();
     ctx.beginPath();
@@ -2800,13 +2979,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillRect(-r, -3, r * 2, 7);
     ctx.rotate(-saturn.ringTilt);
 
-    ctx.restore(); // clip restored
+    ctx.restore();
 
     ctx.rotate(saturn.ringTilt);
     ctx.save();
     ctx.beginPath();
     ctx.rect(-saturn.ringOuterR * 1.5, 0, saturn.ringOuterR * 3, saturn.ringOuterR * 1.5);
-    ctx.clip(); // Only bottom/front half
+    ctx.clip();
 
     ctx.beginPath();
     ctx.ellipse(0, 0, saturn.ringOuterR, saturn.ringOuterR * 0.28, 0, 0, Math.PI * 2);
@@ -2896,7 +3075,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const p = spiralGalaxy.armParticles[i];
       const a = p.angleOffset;
       const x = Math.cos(a) * p.dist + (Math.sin(a) * p.scatter * 0.3);
-      const y = (Math.sin(a) * p.dist + (Math.cos(a) * p.scatter * 0.3)) * 0.48; // tilted perspective
+      const y = (Math.sin(a) * p.dist + (Math.cos(a) * p.scatter * 0.3)) * 0.48;
 
       ctx.fillStyle = `${p.color} ${p.alpha})`;
       ctx.beginPath();
